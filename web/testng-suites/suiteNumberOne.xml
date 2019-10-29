@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Spot im web" verbose="1" parallel="methods" thread-count="3" configfailurepolicy="continue">
+
+
+    <test name="SPOT IM">
+             <classes>
+                 <class name="spotTests.conversation"></class>
+
+             </classes>
+    </test>
+</suite>

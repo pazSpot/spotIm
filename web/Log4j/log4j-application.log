@@ -1,0 +1,132 @@
+2019-10-29 09:57:28 INFO  Log:24 - setUp - before method 
+2019-10-29 09:57:28 INFO  Log:24 - Open in CHROME
+2019-10-29 09:57:30 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 09:57:34 INFO  Log:24 - tearDown
+2019-10-29 09:57:34 INFO  Log:24 - setUp - before method 
+2019-10-29 09:57:34 INFO  Log:24 - Open in CHROME
+2019-10-29 09:57:35 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 09:57:38 INFO  Log:24 - tearDown
+2019-10-29 09:57:38 INFO  Log:24 - setUp - before method 
+2019-10-29 09:57:38 INFO  Log:24 - Open in CHROME
+2019-10-29 09:57:38 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 09:57:41 INFO  Log:24 - tearDown
+2019-10-29 10:25:05 INFO  Log:24 - setUp - before method 
+2019-10-29 10:25:05 INFO  Log:24 - Open in CHROME
+2019-10-29 10:25:07 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 10:25:11 INFO  Log:24 - tearDown
+2019-10-29 10:25:11 INFO  Log:24 - setUp - before method 
+2019-10-29 10:25:11 INFO  Log:24 - Open in CHROME
+2019-10-29 10:25:12 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 10:25:15 INFO  Log:24 - tearDown
+2019-10-29 10:25:15 INFO  Log:24 - setUp - before method 
+2019-10-29 10:25:15 INFO  Log:24 - Open in CHROME
+2019-10-29 10:25:16 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 10:25:19 INFO  Log:24 - tearDown
+2019-10-29 10:39:50 INFO  Log:24 - setUp - before method 
+2019-10-29 10:39:50 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 10:40:02 INFO  Log:24 - tearDown
+2019-10-29 10:42:39 INFO  Log:24 - setUp - before method 
+2019-10-29 10:42:39 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 10:43:16 INFO  Log:24 - tearDown
+2019-10-29 10:56:25 INFO  Log:24 - setUp - before method 
+2019-10-29 10:56:25 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 10:56:46 INFO  Log:24 - tearDown
+2019-10-29 11:02:01 INFO  Log:24 - setUp - before method 
+2019-10-29 11:02:01 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:02:11 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:02:11 INFO  Log:24 - tearDown
+2019-10-29 11:06:36 INFO  Log:24 - setUp - before method 
+2019-10-29 11:06:36 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:07:18 INFO  Log:24 - setUp - before method 
+2019-10-29 11:07:18 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:07:27 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:07:38 INFO  Log:24 - tearDown
+2019-10-29 11:07:39 INFO  Log:24 - setUp - before method 
+2019-10-29 11:07:39 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:07:46 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:07:55 INFO  Log:24 - tearDown
+2019-10-29 11:07:55 INFO  Log:24 - setUp - before method 
+2019-10-29 11:07:55 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:08:07 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:08:17 INFO  Log:24 - tearDown
+2019-10-29 11:10:49 INFO  Log:24 - setUp - before method 
+2019-10-29 11:10:49 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:29:14 INFO  Log:24 - setUp - before method 
+2019-10-29 11:29:14 INFO  Log:24 - grid to run  - myMachine 
+2019-10-29 11:29:14 INFO  Log:24 - Open in CHROME
+2019-10-29 11:29:16 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:29:20 INFO  Log:24 - tearDown
+2019-10-29 11:29:20 INFO  Log:24 - setUp - before method 
+2019-10-29 11:29:20 INFO  Log:24 - grid to run  - myMachine 
+2019-10-29 11:29:20 INFO  Log:24 - Open in CHROME
+2019-10-29 11:29:20 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:29:24 INFO  Log:24 - tearDown
+2019-10-29 11:29:25 INFO  Log:24 - setUp - before method 
+2019-10-29 11:29:25 INFO  Log:24 - grid to run  - myMachine 
+2019-10-29 11:29:25 INFO  Log:24 - Open in CHROME
+2019-10-29 11:29:25 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:29:29 INFO  Log:24 - tearDown
+2019-10-29 11:29:41 INFO  Log:24 - setUp - before method 
+2019-10-29 11:29:41 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:29:57 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:30:12 INFO  Log:24 - tearDown
+2019-10-29 11:30:13 INFO  Log:24 - setUp - before method 
+2019-10-29 11:30:13 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:30:25 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:30:38 INFO  Log:24 - tearDown
+2019-10-29 11:30:38 INFO  Log:24 - setUp - before method 
+2019-10-29 11:30:38 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:30:50 INFO  Log:24 - Open spotim website  - conversation
+2019-10-29 11:31:04 INFO  Log:24 - tearDown
+2019-10-29 11:32:19 INFO  Log:24 - setUp - before method 
+2019-10-29 11:32:19 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:35:00 INFO  Log:24 - setUp - before method 
+2019-10-29 11:35:00 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:35:10 INFO  Log:24 - tearDown
+2019-10-29 11:35:11 INFO  Log:24 - setUp - before method 
+2019-10-29 11:35:11 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:35:28 INFO  Log:24 - tearDown
+2019-10-29 11:35:28 INFO  Log:24 - setUp - before method 
+2019-10-29 11:35:28 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:35:56 INFO  Log:24 - tearDown
+2019-10-29 11:35:57 INFO  Log:24 - setUp - before method 
+2019-10-29 11:35:57 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:36:21 INFO  Log:24 - tearDown
+2019-10-29 11:36:22 INFO  Log:24 - setUp - before method 
+2019-10-29 11:36:22 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:36:51 INFO  Log:24 - tearDown
+2019-10-29 11:36:51 INFO  Log:24 - setUp - before method 
+2019-10-29 11:36:51 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:37:23 INFO  Log:24 - tearDown
+2019-10-29 11:37:23 INFO  Log:24 - setUp - before method 
+2019-10-29 11:37:23 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:37:47 INFO  Log:24 - tearDown
+2019-10-29 11:37:47 INFO  Log:24 - setUp - before method 
+2019-10-29 11:37:47 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:37:58 INFO  Log:24 - tearDown
+2019-10-29 11:37:58 INFO  Log:24 - setUp - before method 
+2019-10-29 11:37:58 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:38:08 INFO  Log:24 - tearDown
+2019-10-29 11:38:08 INFO  Log:24 - setUp - before method 
+2019-10-29 11:38:08 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:38:32 INFO  Log:24 - tearDown
+2019-10-29 11:38:32 INFO  Log:24 - setUp - before method 
+2019-10-29 11:38:32 INFO  Log:24 - grid to run  - browserStacks 
+2019-10-29 11:38:58 INFO  Log:24 - tearDown
+2019-10-29 11:39:48 INFO  Log:24 - setUp - before method 
+2019-10-29 11:39:48 INFO  Log:24 - grid to run  - myMachine 
+2019-10-29 11:39:48 INFO  Log:24 - Open in CHROME
+2019-10-29 11:39:54 INFO  Log:24 - tearDown
+2019-10-29 11:40:43 INFO  Log:24 - tearDown
+2019-10-29 11:40:46 INFO  Log:24 - setUp - before method 
+2019-10-29 11:40:46 INFO  Log:24 - grid to run  - myMachine 
+2019-10-29 11:40:46 INFO  Log:24 - Open in CHROME
+2019-10-29 11:40:51 INFO  Log:24 - tearDown
+2019-10-29 11:40:51 INFO  Log:24 - setUp - before method 
+2019-10-29 11:40:51 INFO  Log:24 - grid to run  - myMachine 
+2019-10-29 11:40:51 INFO  Log:24 - Open in CHROME
+2019-10-29 11:40:55 INFO  Log:24 - tearDown
+2019-10-29 11:40:56 INFO  Log:24 - setUp - before method 
+2019-10-29 11:40:56 INFO  Log:24 - grid to run  - myMachine 
+2019-10-29 11:40:56 INFO  Log:24 - Open in CHROME
+2019-10-29 11:41:00 INFO  Log:24 - tearDown
