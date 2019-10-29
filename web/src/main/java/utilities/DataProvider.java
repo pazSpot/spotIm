@@ -26,10 +26,6 @@ public class DataProvider extends BasePage {
         return new Object[][]{
                 {"FirstName_" + this.random(), "LastName_" + this.random(), "050555555555", "email_" + this.random() + "@gmail.com", "Aa123456789"},
                 {"FirstName_" + this.random(), "LastName_" + this.random(), "050555555555", "email_" + this.random() + "@gmail.com", "Aa123456789"},
-                {"FirstName_" + this.random(), "LastName_" + this.random(), "050555555555", "email_" + this.random() + "@gmail.com", "Aa123456789"},
-                {"FirstName_" + this.random(), "LastName_" + this.random(), "050555555555", "email_" + this.random() + "@gmail.com", "Aa123456789"},
-                {"FirstName_" + this.random(), "LastName_" + this.random(), "050555555555", "email_" + this.random() + "@gmail.com", "Aa123456789"},
-
         };
 
     }
@@ -39,9 +35,6 @@ public class DataProvider extends BasePage {
         return new Object[][]{
                 {"email_RDF7SPNq@gmail.com", "Aa123456789"},
                 {"email_x3r1ixN0@gmail.com", "Aa123456789"},
-                {"email_VYhQsoQr@gmail.com", "Aa123456789"},
-                {"email_dLdg8in6@gmail.com", "Aa123456789"},
-                {"email_iOEWqiCq@gmail.com", "Aa123456789"},
         };
     }
 
