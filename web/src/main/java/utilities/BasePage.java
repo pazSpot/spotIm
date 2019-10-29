@@ -14,9 +14,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static utilities.BasePageHelper.chooseBrowser;
 
 
@@ -34,11 +34,13 @@ public class BasePage {
     public static String testName;
 
 
-    private static final int TIMEOUT = 5;
-    private static final int POLLING = 100;
 
     public WebDriver driver = null;
-    public WebDriverWait wait;
+    public WebDriverWait wait = null;
+
+
+    private static final int TIMEOUT = 10;
+    private static final int POLLING = 100;
 
     @BeforeMethod
     public void BeforeMethod() throws Exception {
@@ -123,7 +125,7 @@ public class BasePage {
                 driver = new SafariDriver();
             }
 
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(20, SECONDS);
         }
     }
 

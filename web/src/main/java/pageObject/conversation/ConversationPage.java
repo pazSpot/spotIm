@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.Log;
 
+import java.io.File;
 import java.util.List;
 
 public class ConversationPage {
@@ -27,9 +29,21 @@ public class ConversationPage {
     @CacheLookup
     WebElement photoButton;
 
+    @FindBy(xpath = "//*[@class='spcv_file-input']")
+    @CacheLookup
+    WebElement photoUpload;
+
+    @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[1]/div[2]/div[3]/div[1]/a")
+    @CacheLookup
+    WebElement picUpload;
+
     @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[2]/div/div/button")
     @CacheLookup
     WebElement postButton;
+
+    @FindBy(xpath = "//*[@class='spcv_button-text']")
+    @CacheLookup
+    WebElement removePicButton;
 
     WebDriver driver;
 
@@ -75,10 +89,10 @@ public class ConversationPage {
         }
     }
 
-    public void sendPhoto(String photo) {
+    public void sendPhoto(String path) {
         System.out.println("Entering photo");
         try {
-            photoButton.sendKeys(photo);
+            photoUpload.sendKeys(path);
         } catch (Exception e) {
             System.out.println("Error Entering photo");
         }
@@ -102,6 +116,14 @@ public class ConversationPage {
         }
     }
 
+    public void clickOnRemovePic() {
+        System.out.println("Clicking on Remove pic");
+        try {
+            removePicButton.click();
+        } catch (Exception e) {
+            System.out.println("Error clicking on Remove pic");
+        }
+    }
 
     public void enterComment(String myComment) {
         System.out.println("Entering Comment");
@@ -146,6 +168,16 @@ public class ConversationPage {
         } catch (Exception e) {
             System.out.println("Error clicking on one of the GIFs");
         }
+    }
+
+    public WebElement getPic(){
+        WebElement pic=null;
+        try {
+            pic=picUpload;
+        }catch (Exception e){
+            Log.info("Error: Didn't wait enoth for the Picture ");
+        }
+     return pic;
     }
 
 }

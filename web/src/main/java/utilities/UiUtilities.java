@@ -4,9 +4,9 @@ package utilities;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.concurrent.TimeUnit;
 
 import static utilities.BasePage.brand;
 import static utilities.BasePageHelper.chooseBrand;
@@ -56,7 +56,7 @@ public class UiUtilities {
         }
 
         driver.navigate().to(pageUrl);
-        driver.navigate().refresh();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         driver.manage().deleteAllCookies();
         jse.executeScript("javascript:localStorage.clear();");
