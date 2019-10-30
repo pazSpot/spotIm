@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Spot im web" verbose="1" parallel="methods" thread-count="3" configfailurepolicy="continue">
+<suite name="Spot im web" parallel="tests" thread-count="4" >
 
 
     <test name="SPOT IM">
              <classes>
                  <class name="spotTests.conversation"></class>
-
+                 <class name="spotTests.starReviews"></class>
              </classes>
     </test>
 </suite>

@@ -130,7 +130,7 @@ public class conversation extends BasePage {
         starReviewsPage.clickOnSortBy();
         starReviewsPage.chooseSortByFromList(sortName);
 
-        Assert.assertEquals(starReviewsPage.getSortName(),sortName,"Error: sort name doesn't match to DP");
+        Assert.assertEquals(starReviewsPage.getSortName(), sortName, "Error: sort name doesn't match to DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "conversationLogin", dataProviderClass = DataProvider.class)
@@ -145,11 +145,11 @@ public class conversation extends BasePage {
         ConversationPage.insertUserPassword(password);
         ConversationPage.clickOnLoginButton();
 
-        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(),actualName,"Error: user name dosn't matching to DP");
+        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), actualName, "Error: user name dosn't matching to DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "conversationSignUp", dataProviderClass = DataProvider.class)
-    public void joinProfileConversation(String userName ,String email, String password) throws Exception {
+    public void joinProfileConversation(String userName, String email, String password) throws Exception {
         ConversationPage ConversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
@@ -166,11 +166,11 @@ public class conversation extends BasePage {
         ConversationPage.clickOnLoginButton();
         Thread.sleep(6000); // waiting for loader
 
-        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(),userName,"Error: user name dosn't matching to DP");
+        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), userName, "Error: user name dosn't matching to DP");
     }
 
-    @Test(alwaysRun = true,dataProvider = "forgotPassword", dataProviderClass = DataProvider.class)
-    public void forgotPasswordConversation(String email,String forgotPassword) throws Exception {
+    @Test(alwaysRun = true, dataProvider = "forgotPassword", dataProviderClass = DataProvider.class)
+    public void forgotPasswordConversation(String email, String forgotPassword) throws Exception {
         ConversationPage ConversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
@@ -181,7 +181,6 @@ public class conversation extends BasePage {
         ConversationPage.insertUserEmail(email);
         ConversationPage.clickOnLoginButton();
 
-        Assert.assertEquals(ConversationPage.getForgotPasswordSuccess(),forgotPassword,"Error: forgot password doesn't match DP");
+        Assert.assertEquals(ConversationPage.getForgotPasswordSuccessMessage(), forgotPassword, "Error: forgot password doesn't match DP");
     }
-
 }

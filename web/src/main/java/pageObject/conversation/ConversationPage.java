@@ -87,7 +87,6 @@ public class ConversationPage {
     WebElement forgotPasswordSuccess;
 
     WebDriver driver;
-    WebDriverWait wait = new WebDriverWait(driver, 20);
 
     public ConversationPage(WebDriver driver) {
         this.driver = driver;
@@ -104,6 +103,7 @@ public class ConversationPage {
     }
 
     public void clickOnForgotPasswordButton() {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOf(integrationBox));
         Log.info("Clicking on forgot password button");
         try {
@@ -114,6 +114,7 @@ public class ConversationPage {
     }
 
     public void clickOnJoinFormButton() {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOf(integrationBox));
         Log.info("Clicking on Join button");
         try {
@@ -160,6 +161,7 @@ public class ConversationPage {
     }
 
     public void insertUserName(String userName) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOf(integrationBox));
         Log.info("Entering user name");
         try {
@@ -257,14 +259,14 @@ public class ConversationPage {
         return fullNickName;
     }
 
-    public String getForgotPasswordSuccess() {
+    public String getForgotPasswordSuccessMessage() {
         String fullSuccess = null;
-        Log.info("Getting Forgot password ");
+        Log.info("Getting Forgot password message ");
         try {
             fullSuccess = forgotPasswordSuccess.getText();
             Log.info("Forgot password is: " + fullSuccess);
         } catch (Exception e) {
-            Log.info("Error getting Forgot password");
+            Log.info("Error getting Forgot password message");
         }
         return fullSuccess;
     }
