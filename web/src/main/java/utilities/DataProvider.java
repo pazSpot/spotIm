@@ -49,6 +49,17 @@ public class DataProvider extends BasePage {
         };
     }
 
+    @org.testng.annotations.DataProvider(name = "fullStarRating")
+    public Object[][] fullStarRating() throws Exception {
+        return new Object[][]{
+                {1},
+                {2},
+                {3},
+                {4},
+                {5},
+        };
+    }
+
     @org.testng.annotations.DataProvider(name = "sortList")
     public Object[][] sortList() throws Exception {
         return new Object[][]{

@@ -11,8 +11,8 @@ import java.util.concurrent.TimeUnit;
 
 public class starReviews extends BasePage {
 
-    @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
-    public void clickOnTheStarReviews(String nickName, String comment, String actualName) throws Exception {
+    @Test(alwaysRun = true, dataProvider = "fullStarRating", dataProviderClass = DataProvider.class)
+    public void clickOnTheStarReviews(int fullStarRating) throws Exception {
 
         StarReviewsPage starReviewsPage = new StarReviewsPage(driver);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -20,8 +20,11 @@ public class starReviews extends BasePage {
         UiUtilities uiUtilities = new UiUtilities(driver);
 
         uiUtilities.openBrandHomePage("starReviews");
+        starReviewsPage.rateFromHeader(fullStarRating);
 
-        starReviewsPage.rateFromHeader(5);
+        Assert.assertEquals(starReviewsPage.getFullStarRating(),fullStarRating,"Error: full star rating doesn't match to DP");
+
+
     }
 
     @Test(alwaysRun = true, dataProvider = "sortList", dataProviderClass = DataProvider.class)

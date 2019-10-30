@@ -18,6 +18,8 @@ public class StarReviewsPage {
     protected final static By starRatingHeader = By.className("spcv_stars-rating-summary");
     protected final static By starRating = By.className("spcv_icon");
     protected final static By starRatingEditing = By.className("spcv_editing");
+    protected final static By starRatingFull = By.className("spcv_full");
+    protected final static By commentEditor = By.className("spcv_editor");
 
 
 
@@ -36,6 +38,10 @@ public class StarReviewsPage {
     @FindBy(xpath = "class=\"spcv_droplist\"")
     @CacheLookup
     WebElement sortByList;
+
+    @FindBy(xpath = "class=\"spcv_stars-rating spcv_rich-editor\"")
+    @CacheLookup
+    WebElement starRatingInComment;
 
     WebDriver driver;
 
@@ -95,6 +101,21 @@ public class StarReviewsPage {
             System.out.println("Error getting sort name");
         }
         return fullSortName;
+    }
+
+
+    public int getFullStarRating() {
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        int fullStarReview = 0;
+        System.out.println("Getting Star rating");
+        try {
+            wait.until(ExpectedConditions.attributeToBe(By.xpath("//*[@data-spot-im-class=\"rich-editor-wrapper\"]"),"data-expanded","true"));
+            fullStarReview = driver.findElement(commentEditor).findElement(starRatingEditing).findElements(starRatingFull).size();
+            System.out.println("The Star rating is: " + fullStarReview);
+        } catch (Exception e) {
+            System.out.println("Error getting Star rating");
+        }
+        return fullStarReview;
     }
 
     public String getComment() {
