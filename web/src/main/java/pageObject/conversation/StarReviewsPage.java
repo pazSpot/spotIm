@@ -51,54 +51,24 @@ public class StarReviewsPage {
     }
 
 
-    public void clickOnNickName() {
-        System.out.println("Clicking on Nick Name");
-        try {
-            nickName.click();
-        } catch (Exception e) {
-            System.out.println("Error clicking on nick name");
-        }
-    }
-
-
-    public void enterNickName(String myNickName) {
-        System.out.println("Entering nick name");
-        try {
-            nickName.sendKeys(myNickName);
-        } catch (Exception e) {
-            System.out.println("Error Entering first name");
-        }
-    }
-
-
     public void clickOnSortBy() {
-        System.out.println("Clicking on SortBy");
+        Log.info("Clicking on SortBy");
         try {
             sortByName.click();
         } catch (Exception e) {
-            System.out.println("Error clicking on SortBy");
-        }
-    }
-
-
-    public void enterComment(String myComment) {
-        System.out.println("Entering Comment");
-        try {
-            addComment.sendKeys(myComment);
-        } catch (Exception e) {
-            System.out.println("Error Entering Comment");
+            Log.info("Error clicking on SortBy");
         }
     }
 
 
     public String getSortName() {
         String fullSortName = null;
-        System.out.println("Getting sort name");
+        Log.info("Getting sort name");
         try {
             fullSortName = sortByName.getText();
-            System.out.println("The sort name is: " + fullSortName);
+            Log.info("The sort name is: " + fullSortName);
         } catch (Exception e) {
-            System.out.println("Error getting sort name");
+            Log.info("Error getting sort name");
         }
         return fullSortName;
     }
@@ -107,27 +77,15 @@ public class StarReviewsPage {
     public int getFullStarRating() {
         WebDriverWait wait = new WebDriverWait(driver,5);
         int fullStarReview = 0;
-        System.out.println("Getting Star rating");
+        Log.info("Getting Star rating");
         try {
             wait.until(ExpectedConditions.attributeToBe(By.xpath("//*[@data-spot-im-class=\"rich-editor-wrapper\"]"),"data-expanded","true"));
             fullStarReview = driver.findElement(commentEditor).findElement(starRatingEditing).findElements(starRatingFull).size();
-            System.out.println("The Star rating is: " + fullStarReview);
+            Log.info("The Star rating is: " + fullStarReview);
         } catch (Exception e) {
-            System.out.println("Error getting Star rating");
+            Log.info("Error getting Star rating");
         }
         return fullStarReview;
-    }
-
-    public String getComment() {
-        String fullComment = null;
-        System.out.println("Getting comment");
-        try {
-            fullComment = addComment.getText();
-            System.out.println("The comment is: " + fullComment);
-        } catch (Exception e) {
-            System.out.println("Error getting the comment");
-        }
-        return fullComment;
     }
 
 
@@ -138,14 +96,14 @@ public class StarReviewsPage {
             List<WebElement> sortBy = driver.findElements(By.xpath("//*[@class=\"spcv_droplist\"]/li"));
             for (int x = 0; x < sortBy.size(); x++) {
                 if (sortBy.get(x).getText().contains(sortByOption)) {
-                    System.out.println("Clicking on " + sortBy.get(x).getText() + " from sort by list");
+                    Log.info("Clicking on " + sortBy.get(x).getText() + " from sort by list");
                     sortBy.get(x).click();
                     wait.until(ExpectedConditions.invisibilityOf(sortByList));
                     break;
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error choosing destination");
+            Log.info("Error choosing destination");
         }
     }
 

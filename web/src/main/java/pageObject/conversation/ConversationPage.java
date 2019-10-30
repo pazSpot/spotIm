@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Log;
 
-import java.io.File;
 import java.util.List;
 
 public class ConversationPage {
@@ -54,130 +53,132 @@ public class ConversationPage {
 
 
     public void clickOnNickName() {
-        System.out.println("Clicking on Nick Name");
+        Log.info("Clicking on Nick Name");
         try {
             nickName.click();
         } catch (Exception e) {
-            System.out.println("Error clicking on nick name");
+            Log.info("Error clicking on nick name");
         }
     }
 
     public void clickOnGifButton() {
-        System.out.println("Clicking on GIF Button");
+        Log.info("Clicking on GIF Button");
         try {
             gifButton.click();
         } catch (Exception e) {
-            System.out.println("Error clicking on GIF Button");
+            Log.info("Error clicking on GIF Button");
         }
     }
 
     public void clickOnPhotoButton() {
-        System.out.println("Clicking on photo Button");
+        Log.info("Clicking on photo Button");
         try {
             photoButton.click();
         } catch (Exception e) {
-            System.out.println("Error clicking on photo Button");
+            Log.info("Error clicking on photo Button");
         }
     }
 
     public void enterNickName(String myNickName) {
-        System.out.println("Entering nick name");
+        Log.info("Entering nick name");
         try {
             nickName.sendKeys(myNickName);
         } catch (Exception e) {
-            System.out.println("Error Entering first name");
+            Log.info("Error Entering first name");
         }
     }
 
     public void sendPhoto(String path) {
-        System.out.println("Entering photo");
+        Log.info("Entering photo");
         try {
             photoUpload.sendKeys(path);
         } catch (Exception e) {
-            System.out.println("Error Entering photo");
+            Log.info("Error Entering photo");
         }
     }
 
     public void clickOnComment() {
-        System.out.println("Clicking on Comment");
+        Log.info("Clicking on Comment");
         try {
             addComment.click();
         } catch (Exception e) {
-            System.out.println("Error clicking on Comment");
+            Log.info("Error clicking on Comment");
         }
     }
 
     public void clickOnPost() {
-        System.out.println("Clicking on Post");
+        Log.info("Clicking on Post");
         try {
             postButton.click();
         } catch (Exception e) {
-            System.out.println("Error clicking on Post");
+            Log.info("Error clicking on Post");
         }
     }
 
     public void clickOnRemovePic() {
-        System.out.println("Clicking on Remove pic");
+        Log.info("Clicking on Remove pic");
         try {
             removePicButton.click();
         } catch (Exception e) {
-            System.out.println("Error clicking on Remove pic");
+            Log.info("Error clicking on Remove pic");
         }
     }
 
     public void enterComment(String myComment) {
-        System.out.println("Entering Comment");
+        Log.info("Entering Comment");
         try {
             addComment.sendKeys(myComment);
         } catch (Exception e) {
-            System.out.println("Error Entering Comment");
+            Log.info("Error Entering Comment");
         }
     }
 
 
     public String getNickName() {
         String fullNickName = null;
-        System.out.println("Getting full name");
+        Log.info("Getting full name");
         try {
             fullNickName = nickName.getAttribute("value");
-            System.out.println("The nick name is: " + fullNickName);
+            Log.info("The nick name is: " + fullNickName);
         } catch (Exception e) {
-            System.out.println("Error getting nick name");
+            Log.info("Error getting nick name");
         }
         return fullNickName;
     }
 
     public String getComment() {
         String fullComment = null;
-        System.out.println("Getting comment");
+        Log.info("Getting comment");
         try {
             fullComment = addComment.getText();
-            System.out.println("The comment is: " + fullComment);
+            Log.info("The comment is: " + fullComment);
         } catch (Exception e) {
-            System.out.println("Error getting the comment");
+            Log.info("Error getting the comment");
         }
         return fullComment;
     }
 
     public void clickOnOneOfTheGifs() {
+        Log.info("Clicking on one of the GIF's");
         try {
             List<WebElement> gifs = driver.findElements(By.xpath("//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[2]/div/span/div[2]/div/div/div/div/div"));
             for (int x = 0; x < gifs.size(); x++) {
                 gifs.get(x).click();
             }
         } catch (Exception e) {
-            System.out.println("Error clicking on one of the GIFs");
+            Log.info("Error clicking on one of the GIFs");
         }
     }
 
-    public WebElement getPic(){
-        WebElement pic=null;
+    public WebElement getPic() {
+        Log.info("Getting pic ..");
+        WebElement pic = null;
         try {
-            pic=picUpload;
-        }catch (Exception e){
+            pic = picUpload;
+        } catch (Exception e) {
             Log.info("Error: Didn't wait enoth for the Picture ");
         }
-     return pic;
+        return pic;
     }
 
 }
