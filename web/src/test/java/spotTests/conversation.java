@@ -20,7 +20,7 @@ public class conversation extends BasePage {
         ConversationPage ConversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
-        uiUtilities.openBrandHomePage();
+        uiUtilities.openBrandHomePage("conversation");
 
         ConversationPage.clickOnNickName();
         ConversationPage.enterNickName(nickName);
@@ -40,7 +40,7 @@ public class conversation extends BasePage {
         UiUtilities uiUtilities = new UiUtilities(driver);
         ConversationPage ConversationPage = new ConversationPage(driver);
 
-        uiUtilities.openBrandHomePage();
+        uiUtilities.openBrandHomePage("conversation");
 
         ConversationPage.clickOnNickName();
         ConversationPage.enterNickName(nickName);
@@ -65,7 +65,7 @@ public class conversation extends BasePage {
         UiUtilities uiUtilities = new UiUtilities(driver);
         ConversationPage ConversationPage = new ConversationPage(driver);
 
-        uiUtilities.openBrandHomePage();
+        uiUtilities.openBrandHomePage("conversation");
 
         ConversationPage.clickOnNickName();
         ConversationPage.enterNickName(nickName);
@@ -92,7 +92,7 @@ public class conversation extends BasePage {
         UiUtilities uiUtilities = new UiUtilities(driver);
         ConversationPage ConversationPage = new ConversationPage(driver);
 
-        uiUtilities.openBrandHomePage();
+        uiUtilities.openBrandHomePage("conversation");
 
         ConversationPage.clickOnNickName();
         ConversationPage.enterNickName(nickName);

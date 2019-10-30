@@ -26,7 +26,7 @@ public class UiUtilities {
     }
 
 
-    public void openBrandHomePage() throws Exception {
+    public void openBrandHomePage(String brand) throws Exception {
 
         String brandName = chooseBrand(brand);
         if (brandName.equals("conversation")) {
