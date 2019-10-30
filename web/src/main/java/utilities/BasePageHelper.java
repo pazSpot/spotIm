@@ -19,7 +19,7 @@ public class BasePageHelper extends BasePage {
     }
 
     public static String chooseBrand(String brand) {
-        if (brand.equals("conversation") || brand.equals("moderation") || brand.equals("liveBlog") || brand.equals("starReviews") ||
+        if (brand.equals("conversation") || brand.equals("conversationNoRobot") || brand.equals("moderation") || brand.equals("liveBlog") || brand.equals("starReviews") ||
                 brand.equals("recirculation") || brand.equals("spotlightComment") || brand.equals("spotlightEmail") || brand.equals("messageCountWidget")) {
             return brand;
         }

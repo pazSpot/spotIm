@@ -70,7 +70,7 @@
         <!--!!!!!   myMachine  WEB !!!-->
         <GridToRunTests>myMachine</GridToRunTests> <!--!!!!! myMachine  / browserStacks !!!!!-->
         <browser>Chrome</browser>  <!--!!!!! firefox  / IE / Chrome / safari  / Edge !!!!!-->
-        <brand>conversation</brand> <!--!!!!! conversation  / moderation / liveBlog / starReviews / recirculation / spotlightComment / spotlightEmail / messageCountWidget !!!!!-->
+        <brand>conversation</brand> <!--!!!!!conversationNoRobot / conversation  / moderation / liveBlog / starReviews / recirculation / spotlightComment / spotlightEmail / messageCountWidget !!!!!-->
 
     </properties>
 

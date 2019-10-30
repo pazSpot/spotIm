@@ -2,6 +2,7 @@ package utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
@@ -14,6 +15,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.logging.Level;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -39,16 +41,21 @@ public class BasePage {
     public WebDriverWait wait = null;
 
 
+    public static String session;
+    protected ThreadLocal<RemoteWebDriver> driverContainer = new ThreadLocal<>(); //driver container for driver thread save when working in parallel
+
+
+
     private static final int TIMEOUT = 10;
     private static final int POLLING = 100;
 
     @BeforeMethod
     public void BeforeMethod() throws Exception {
         Log.info("setUp - before method ");
+        String gridURL = null;
 
         if (GridToRunTests.equals("browserStacks")) {
             Log.info("grid to run  - browserStacks ");
-
             DesiredCapabilities caps = new DesiredCapabilities();
 
 
@@ -107,6 +114,9 @@ public class BasePage {
 
 
         } else if (GridToRunTests.equals("myMachine")) {
+
+           gridURL = "http://localhost:4444/wd/hub";
+
             Log.info("grid to run  - myMachine ");
 
             String browserName = chooseBrowser(browser);
@@ -114,6 +124,23 @@ public class BasePage {
                 Log.info("Open in CHROME");
                 System.setProperty("webdriver.chrome.driver", "chromedriver");
                 driver = new ChromeDriver();
+
+
+                /// PARALLEL //
+//                ChromeOptions options = new ChromeOptions();
+//                DesiredCapabilities capabilities = DesiredCapabilities.edge();
+//                options.addArguments("--dns-prefetch-disable");//To fix timeout: cannot determine loading status
+//                options.addArguments("chrome.switches", "--disable-extensions");
+//                options.addArguments("--test-type");  //To get rid off 'ignore certificate errors' message
+//                options.addArguments("disable-infobars");
+//                capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+//                capabilities.setCapability(CapabilityType.BROWSER_NAME, browserName);
+//                capabilities.setCapability("chrome.switches", Arrays.asList("--disable-extensions"));
+//
+//                driverContainer.set(new RemoteWebDriver(new URL(gridURL), capabilities));
+//                session = String.valueOf(driverContainer.get().getSessionId());
+                // PARALLEL OVER HERE  //
+
 
             } else if (browserName.equals("firefox")) {
                 Log.info("Open in FIREFOX");

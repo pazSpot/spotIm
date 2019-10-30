@@ -32,6 +32,9 @@ public class UiUtilities {
         if (brandName.equals("conversation")) {
             pageUrl = ("http://www.spotim.name/lia-username/lia1.html");
 
+        } else if (brandName.equals("conversationNoRobot")) {
+            pageUrl = ("http://www.spotim.name/bd-playground/post1.html");
+
         } else if (brandName.equals("moderation")) {
             pageUrl = ("https://admin.spot.im/");
 

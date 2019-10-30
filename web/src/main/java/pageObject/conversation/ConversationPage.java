@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Log;
 
 import java.util.List;
@@ -44,13 +46,91 @@ public class ConversationPage {
     @CacheLookup
     WebElement removePicButton;
 
+    @FindBy(xpath = "//*[@class='spcv_login-button']")
+    @CacheLookup
+    WebElement logInHomePageButton;
+
+    @FindBy(xpath = "//*[@data-testid='input-email']")
+    @CacheLookup
+    WebElement userEmailForm;
+
+    @FindBy(xpath = "//*[@data-testid='input-password']")
+    @CacheLookup
+    WebElement userPasswordForm;
+
+    @FindBy(xpath = "//*[@data-testid='input-username']")
+    @CacheLookup
+    WebElement userNameForm;
+
+    @FindBy(xpath = "//*[@data-testid='big-button']")
+    @CacheLookup
+    WebElement loginFormButton;
+
+    @FindBy(xpath = "//*[@data-testid='chevronButton']")
+    @CacheLookup
+    WebElement joinButton;
+
+    @FindBy(xpath = "//*[@data-spot-im-class='handler']/span")
+    @CacheLookup
+    WebElement userNameAfterLogin;
+
+    @FindBy(xpath = "//*[@data-testid=\"button\"]")
+    @CacheLookup
+    WebElement forgotPassword;
+
+    @FindBy(xpath = "//*[@data-testid=\"registration-modal\"]")
+    @CacheLookup
+    WebElement integrationBox;
+
+    @FindBy(xpath = "//*[@class=\"sc-cLQEGU gRGlKa\"]")
+    @CacheLookup
+    WebElement forgotPasswordSuccess;
+
     WebDriver driver;
+    WebDriverWait wait = new WebDriverWait(driver, 20);
 
     public ConversationPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
+    public void clickOnLogInHomePageButton() {
+        Log.info("Clicking on Login Home page button");
+        try {
+            logInHomePageButton.click();
+        } catch (Exception e) {
+            Log.info("Error clicking on login Home page button");
+        }
+    }
+
+    public void clickOnForgotPasswordButton() {
+        wait.until(ExpectedConditions.visibilityOf(integrationBox));
+        Log.info("Clicking on forgot password button");
+        try {
+            forgotPassword.click();
+        } catch (Exception e) {
+            Log.info("Error clicking on forgot password button");
+        }
+    }
+
+    public void clickOnJoinFormButton() {
+        wait.until(ExpectedConditions.visibilityOf(integrationBox));
+        Log.info("Clicking on Join button");
+        try {
+            joinButton.click();
+        } catch (Exception e) {
+            Log.info("Error clicking on join button");
+        }
+    }
+
+    public void clickOnLoginButton() {
+        Log.info("Clicking on Login button");
+        try {
+            loginFormButton.click();
+        } catch (Exception e) {
+            Log.info("Error clicking on login button");
+        }
+    }
 
     public void clickOnNickName() {
         Log.info("Clicking on Nick Name");
@@ -70,12 +150,31 @@ public class ConversationPage {
         }
     }
 
-    public void clickOnPhotoButton() {
-        Log.info("Clicking on photo Button");
+    public void insertUserEmail(String userEmail) {
+        Log.info("Entering user email");
         try {
-            photoButton.click();
+            userEmailForm.sendKeys(userEmail);
         } catch (Exception e) {
-            Log.info("Error clicking on photo Button");
+            Log.info("Error Entering user email");
+        }
+    }
+
+    public void insertUserName(String userName) {
+        wait.until(ExpectedConditions.visibilityOf(integrationBox));
+        Log.info("Entering user name");
+        try {
+            userNameForm.sendKeys(userName);
+        } catch (Exception e) {
+            Log.info("Error Entering user name");
+        }
+    }
+
+    public void insertUserPassword(String userPassword) {
+        Log.info("Entering user password");
+        try {
+            userPasswordForm.sendKeys(userPassword);
+        } catch (Exception e) {
+            Log.info("Error Entering user password");
         }
     }
 
@@ -133,6 +232,18 @@ public class ConversationPage {
         }
     }
 
+    public String getUserNameAfterLogin() {
+        String fullNickName = null;
+        Log.info("Getting user name after login");
+        try {
+            fullNickName = userNameAfterLogin.getText();
+            Log.info("user name after login is: " + fullNickName);
+        } catch (Exception e) {
+            Log.info("Error getting user name after login");
+        }
+        return fullNickName;
+    }
+
 
     public String getNickName() {
         String fullNickName = null;
@@ -144,6 +255,18 @@ public class ConversationPage {
             Log.info("Error getting nick name");
         }
         return fullNickName;
+    }
+
+    public String getForgotPasswordSuccess() {
+        String fullSuccess = null;
+        Log.info("Getting Forgot password ");
+        try {
+            fullSuccess = forgotPasswordSuccess.getText();
+            Log.info("Forgot password is: " + fullSuccess);
+        } catch (Exception e) {
+            Log.info("Error getting Forgot password");
+        }
+        return fullSuccess;
     }
 
     public String getComment() {
