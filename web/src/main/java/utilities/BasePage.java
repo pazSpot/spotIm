@@ -151,7 +151,7 @@ public class BasePage {
                 Log.info("Open in SAFARI");
                 driver = new SafariDriver();
             }
-
+            driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(20, SECONDS);
         }
     }

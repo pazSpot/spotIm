@@ -148,6 +148,25 @@ public class conversation extends BasePage {
         Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), actualName, "Error: user name dosn't matching to DP");
     }
 
+    @Test(alwaysRun = true, dataProvider = "conversationLogin", dataProviderClass = DataProvider.class)
+    public void logOutProfileConversation(String email, String password, String actualName) throws Exception {
+        ConversationPage ConversationPage = new ConversationPage(driver);
+        UiUtilities uiUtilities = new UiUtilities(driver);
+
+        uiUtilities.openBrandHomePage("conversation");
+
+        ConversationPage.clickOnLogInHomePageButton();
+        ConversationPage.insertUserEmail(email);
+        ConversationPage.insertUserPassword(password);
+        ConversationPage.clickOnLoginButton();
+
+        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), actualName, "Error: user name doesn't matching to DP");
+
+        ConversationPage.clickOnHandlerAfterLogin();
+        ConversationPage.chooseUserOptionsFromHandlerList("Log Out");
+        Assert.assertEquals(ConversationPage.getUserNameBeforeLogin(), "Log In", "Error: user name doesn't matching to DP");
+    }
+
     @Test(alwaysRun = true, dataProvider = "conversationSignUp", dataProviderClass = DataProvider.class)
     public void joinProfileConversation(String userName, String email, String password) throws Exception {
         ConversationPage ConversationPage = new ConversationPage(driver);
@@ -182,5 +201,26 @@ public class conversation extends BasePage {
         ConversationPage.clickOnLoginButton();
 
         Assert.assertEquals(ConversationPage.getForgotPasswordSuccessMessage(), forgotPassword, "Error: forgot password doesn't match DP");
+    }
+
+    @Test(alwaysRun = true, dataProvider = "userOptions", dataProviderClass = DataProvider.class)
+    public void profileMyActivityConversation(String email, String password, String actualName,String option,String header) throws Exception {
+
+        ConversationPage ConversationPage = new ConversationPage(driver);
+        UiUtilities uiUtilities = new UiUtilities(driver);
+
+        uiUtilities.openBrandHomePage("conversation");
+
+        ConversationPage.clickOnLogInHomePageButton();
+        ConversationPage.insertUserEmail(email);
+        ConversationPage.insertUserPassword(password);
+        ConversationPage.clickOnLoginButton();
+
+        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), actualName, "Error: user name dosn't matching to DP");
+
+        ConversationPage.clickOnHandlerAfterLogin();
+        ConversationPage.chooseUserOptionsFromHandlerList(option);
+
+        Assert.assertEquals(ConversationPage.getHeaderAfterHandler(),header,"Error: header does not match DP");
     }
 }

@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Log;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ConversationPage {
 
@@ -50,6 +51,10 @@ public class ConversationPage {
     @CacheLookup
     WebElement logInHomePageButton;
 
+    @FindBy(xpath = "//*[@data-spot-im-class=\"registration-buttons\"]/span/span")
+    @CacheLookup
+    WebElement logInHomePageTitle;
+
     @FindBy(xpath = "//*[@data-testid='input-email']")
     @CacheLookup
     WebElement userEmailForm;
@@ -86,6 +91,14 @@ public class ConversationPage {
     @CacheLookup
     WebElement forgotPasswordSuccess;
 
+    @FindBy(xpath = "//*[@data-spot-im-class=\"handler\"]")
+    @CacheLookup
+    WebElement handlerAfterLogin;
+
+    @FindBy(xpath = "//*[@class='styles__Header-sc-1wa2pv7-2 eYhViq']")
+    @CacheLookup
+    WebElement headerFromProfileForm;
+
     WebDriver driver;
 
     public ConversationPage(WebDriver driver) {
@@ -101,6 +114,16 @@ public class ConversationPage {
             Log.info("Error clicking on login Home page button");
         }
     }
+
+    public void clickOnHandlerAfterLogin() {
+        Log.info("Clicking on handler After Login button");
+        try {
+            handlerAfterLogin.click();
+        } catch (Exception e) {
+            Log.info("Error clicking on handler After Login button");
+        }
+    }
+
 
     public void clickOnForgotPasswordButton() {
         WebDriverWait wait = new WebDriverWait(driver, 20);
@@ -152,7 +175,7 @@ public class ConversationPage {
     }
 
     public void insertUserEmail(String userEmail) {
-        Log.info("Entering user email");
+        Log.info("Entering user email "+userEmail);
         try {
             userEmailForm.sendKeys(userEmail);
         } catch (Exception e) {
@@ -163,7 +186,7 @@ public class ConversationPage {
     public void insertUserName(String userName) {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOf(integrationBox));
-        Log.info("Entering user name");
+        Log.info("Entering user name "+ userName);
         try {
             userNameForm.sendKeys(userName);
         } catch (Exception e) {
@@ -172,7 +195,7 @@ public class ConversationPage {
     }
 
     public void insertUserPassword(String userPassword) {
-        Log.info("Entering user password");
+        Log.info("Entering user password "+userPassword);
         try {
             userPasswordForm.sendKeys(userPassword);
         } catch (Exception e) {
@@ -181,7 +204,7 @@ public class ConversationPage {
     }
 
     public void enterNickName(String myNickName) {
-        Log.info("Entering nick name");
+        Log.info("Entering nick name "+myNickName);
         try {
             nickName.sendKeys(myNickName);
         } catch (Exception e) {
@@ -246,6 +269,20 @@ public class ConversationPage {
         return fullNickName;
     }
 
+    public String getUserNameBeforeLogin() {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.withTimeout(5, TimeUnit.SECONDS);
+        String fullNickName = null;
+        Log.info("Getting user name before login");
+        try {
+            fullNickName = logInHomePageTitle.getText();
+            Log.info("user name before login is: " + fullNickName);
+        } catch (Exception e) {
+            Log.info("Error getting user name before login");
+        }
+        return fullNickName;
+    }
+
 
     public String getNickName() {
         String fullNickName = null;
@@ -304,6 +341,37 @@ public class ConversationPage {
             Log.info("Error: Didn't wait enoth for the Picture ");
         }
         return pic;
+    }
+
+
+    public void chooseUserOptionsFromHandlerList(String option) {
+        System.out.println("Choosing option "+option);
+        try {
+            List<WebElement> options = driver.findElements(By.xpath("//*[@class='spcv_item']"));
+            for (int x = 0; x < options.size(); x++) {
+                if (options.get(x).getText().contains(option)) {
+                    System.out.println("Clicking on " + options.get(x).getText() + " from options list");
+                    options.get(x).click();
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error choosing user option");
+        }
+    }
+
+    public String getHeaderAfterHandler() {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.visibilityOf(headerFromProfileForm));
+        String fullHeader = null;
+        Log.info("Getting the header after handler option");
+        try {
+            fullHeader = headerFromProfileForm.getText();
+            Log.info("header after handler option is: " + fullHeader);
+        } catch (Exception e) {
+            Log.info("Error getting header after handler option");
+        }
+        return fullHeader;
     }
 
 }

@@ -7,7 +7,7 @@ public class DataProvider extends BasePage {
 
 
     public String random() {
-        int length = 4;
+        int length = 3;
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "abcdefghijklmnopqrstuvwxyz"
                 + "0123456789";
@@ -52,33 +52,42 @@ public class DataProvider extends BasePage {
     @org.testng.annotations.DataProvider(name = "conversationLogin")
     public Object[][] conversationLogin() throws Exception {
         return new Object[][]{
-                {"paz.e+"+random()+"@spot.im", "pzrati1290eaz", "Paz Ezrati"},
-                {"paz.e+"+random()+"@spot.im", "pzrati1290eaz", "Paz Ezrati"},
-                {"paz.e+"+random()+"@spot.im", "pzrati1290eaz", "Paz Ezrati"},
-                {"paz.e+"+random()+"@spot.im", "pzrati1290eaz", "Paz Ezrati"},
-                {"paz.e+"+random()+"@spot.im", "pzrati1290eaz", "Paz Ezrati"},
+                {"automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl"},
+                {"automation_gas@spot.im", "Abc123456789!", "Automation_OPV"},
+                {"automation_hGr@spot.im", "Abc123456789!", "Automation_faV"},
 
+
+        };
+    }
+
+    @org.testng.annotations.DataProvider(name = "userOptions")
+    public Object[][] userOptions() throws Exception {
+        return new Object[][]{
+                {"automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl","Profile","My Activity"},
+                {"automation_gas@spot.im", "Abc123456789!", "Automation_OPV","Settings","My Settings"},
+                {"automation_hGr@spot.im", "Abc123456789!", "Automation_faV","Privacy","My Privacy"},
+//                {"automation_hGr@spot.im", "Abc123456789!", "Automation_faV","Log Out",""},
         };
     }
 
     @org.testng.annotations.DataProvider(name = "conversationSignUp")
     public Object[][] conversationSignUp() throws Exception {
         return new Object[][]{
-                {"automation_"+random(),"automation_"+random()+"@spot.im", "abc123456789"},
-                {"automation_"+random(),"automation_"+random()+"@spot.im", "abc123456789"},
-                {"automation_"+random(),"automation_"+random()+"@spot.im", "abc123456789"},
-                {"automation_"+random(),"automation_"+random()+"@spot.im", "abc123456789"},
+                {"Automation_"+random(),"automation_"+random()+"@spot.im", "Abc123456789!"},
+                {"Automation_"+random(),"automation_"+random()+"@spot.im", "Abc123456789!"},
+                {"Automation_"+random(),"automation_"+random()+"@spot.im", "Abc123456789!"},
+                {"Automation_"+random(),"automation_"+random()+"@spot.im", "Abc123456789!"},
         };
     }
 
     @org.testng.annotations.DataProvider(name = "forgotPassword")
     public Object[][] forgotPassword() throws Exception {
         return new Object[][]{
-                {"automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
-                {"automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
-                {"automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
-                {"automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
-                {"automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
         };
     }
 
