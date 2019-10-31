@@ -19,7 +19,7 @@ public class conversation extends BasePage {
 
 
     @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
-    public void postCommentInConversation(String nickName, String comment, String actualName) throws Exception {
+    public void postCommentAsGuestConversation(String userType,String nickName, String comment, String actualName) throws Exception {
         ConversationPage ConversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
@@ -27,18 +27,44 @@ public class conversation extends BasePage {
 
         ConversationPage.clickOnNickName();
         ConversationPage.enterNickName(nickName);
-        ConversationPage.clickOnComment();
-        ConversationPage.enterComment(comment);
+        ConversationPage.clickOnComment(userType);
+        ConversationPage.enterComment(userType,comment);
 
         Assert.assertEquals(ConversationPage.getNickName(), actualName, "Error nickName not equal data provider");
-        Assert.assertEquals(ConversationPage.getComment(), comment, "Error comment not equal data provider");
+        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
+
+        ConversationPage.clickOnPost();
+
+        // need to add assert for the comment !!!
+
+    }
+
+    @Test(alwaysRun = true, dataProvider = "commentAsUser", dataProviderClass = DataProvider.class)
+    public void postCommentAsLoginUserConversation(String userType, String email, String password, String actualName, String comment) throws Exception {
+        ConversationPage ConversationPage = new ConversationPage(driver);
+        UiUtilities uiUtilities = new UiUtilities(driver);
+
+        uiUtilities.openBrandHomePage("conversation");
+
+        ConversationPage.clickOnLogInHomePageButton();
+        ConversationPage.insertUserEmail(email);
+        ConversationPage.insertUserPassword(password);
+        ConversationPage.clickOnLoginButton();
+        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), actualName, "Error: user name doesn't matching to DP");
+
+        ConversationPage.clickOnComment(userType);
+        Assert.assertEquals(ConversationPage.getCommentPlaceholder(), "Add a comment...", "Error comment not equal data provider");
+
+        ConversationPage.enterComment(userType,comment);
+
+        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
 
         ConversationPage.clickOnPost();
 
     }
 
     @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
-    public void postGIFCommentInConversation(String nickName, String comment, String actualName) throws Exception {
+    public void postGIFCommentAsGuestInConversation(String userType,String nickName, String comment, String actualName) throws Exception {
 
         UiUtilities uiUtilities = new UiUtilities(driver);
         ConversationPage ConversationPage = new ConversationPage(driver);
@@ -48,21 +74,20 @@ public class conversation extends BasePage {
         ConversationPage.clickOnNickName();
         ConversationPage.enterNickName(nickName);
 
-        ConversationPage.clickOnComment();
-        ConversationPage.enterComment(comment);
+        ConversationPage.clickOnComment(userType);
+        ConversationPage.enterComment(userType,comment);
 
         Assert.assertEquals(ConversationPage.getNickName(), actualName, "Error nickName not equal data provider");
-        Assert.assertEquals(ConversationPage.getComment(), comment, "Error comment not equal data provider");
+        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
 
         ConversationPage.clickOnGifButton();
         ConversationPage.clickOnOneOfTheGifs();
 
         ConversationPage.clickOnPost();
-
     }
 
     @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
-    public void postPhotoCommentInConversation(String nickName, String comment, String actualName) throws Exception {
+    public void postPhotoCommentAsGuestInConversation(String userType,String nickName, String comment, String actualName) throws Exception {
 
         WebDriverWait wait = new WebDriverWait(driver, 20);
         UiUtilities uiUtilities = new UiUtilities(driver);
@@ -73,11 +98,11 @@ public class conversation extends BasePage {
         ConversationPage.clickOnNickName();
         ConversationPage.enterNickName(nickName);
 
-        ConversationPage.clickOnComment();
-        ConversationPage.enterComment(comment);
+        ConversationPage.clickOnComment(userType);
+        ConversationPage.enterComment(userType,comment);
 
         Assert.assertEquals(ConversationPage.getNickName(), actualName, "Error nickName not equal data provider");
-        Assert.assertEquals(ConversationPage.getComment(), comment, "Error comment not equal data provider");
+        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
 
         File file = new File("/Users/pazezrati/IdeaProjects/spotIm/web/giphy.gif");
         String path = file.getAbsolutePath();
@@ -89,7 +114,7 @@ public class conversation extends BasePage {
     }
 
     @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
-    public void removePhotoCommentInConversation(String nickName, String comment, String actualName) throws Exception {
+    public void removePhotoCommentAsGuestInConversation(String userType, String nickName, String comment, String actualName) throws Exception {
 
         WebDriverWait wait = new WebDriverWait(driver, 20);
         UiUtilities uiUtilities = new UiUtilities(driver);
@@ -100,11 +125,11 @@ public class conversation extends BasePage {
         ConversationPage.clickOnNickName();
         ConversationPage.enterNickName(nickName);
 
-        ConversationPage.clickOnComment();
-        ConversationPage.enterComment(comment);
+        ConversationPage.clickOnComment(userType);
+        ConversationPage.enterComment(userType,comment);
 
         Assert.assertEquals(ConversationPage.getNickName(), actualName, "Error nickName not equal data provider");
-        Assert.assertEquals(ConversationPage.getComment(), comment, "Error comment not equal data provider");
+        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
 
         File file = new File("/Users/pazezrati/IdeaProjects/spotIm/web/giphy.gif");
         String path = file.getAbsolutePath();

@@ -42,13 +42,20 @@ public class DataProvider extends BasePage {
     @org.testng.annotations.DataProvider(name = "conversation")
     public Object[][] conversation() throws Exception {
         return new Object[][]{
-                {"my name is : spoti !", " Hello World !!!", "my name is : sp"},
-                {"my name is : QA !", " Hello World !!!", "my name is : QA"},
-                {"my name is : Automation !", " Hello World !!!", "my name is : Au"},
+                {"Guest","my name is : spoti !", " Hello World !!!", "my name is : sp"},
+                {"Guest","my name is : QA !", " Hello World !!!", "my name is : QA"},
+                {"Guest","my name is : Automation !", " Hello World !!!", "my name is : Au"},
 
         };
     }
 
+    @org.testng.annotations.DataProvider(name = "commentAsUser")
+    public Object[][] commentAsUser() throws Exception {
+        return new Object[][]{
+                {"User","automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", " Hello World !!!"},
+                {"User","automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", " Hello Spot IM "},
+        };
+    }
     @org.testng.annotations.DataProvider(name = "conversationLogin")
     public Object[][] conversationLogin() throws Exception {
         return new Object[][]{

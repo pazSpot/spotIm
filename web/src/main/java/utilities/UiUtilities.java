@@ -3,12 +3,8 @@ package utilities;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
-
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.concurrent.TimeUnit;
-
-import static utilities.BasePage.brand;
 import static utilities.BasePageHelper.chooseBrand;
 
 

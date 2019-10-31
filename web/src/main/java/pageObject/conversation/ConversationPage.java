@@ -21,7 +21,15 @@ public class ConversationPage {
 
     @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]")
     @CacheLookup
-    WebElement addComment;
+    WebElement addCommentGuest;
+
+    @FindBy(xpath = "//*[@data-spot-im-class=\"rich-editor-input\"]")
+    @CacheLookup
+    WebElement clickCommentUser;
+
+    @FindBy(xpath = "//*[@data-spot-im-class=\"rich-editor-input\"]/div/div[1]/div[1]")
+    @CacheLookup
+    WebElement addCommentUser;
 
     @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[2]/div/span/div[2]/button")
     @CacheLookup
@@ -39,7 +47,7 @@ public class ConversationPage {
     @CacheLookup
     WebElement picUpload;
 
-    @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[2]/div/div/button")
+    @FindBy(xpath = "//*[@data-spot-im-class=\"rich-editor-panel\"]/div/div/button")
     @CacheLookup
     WebElement postButton;
 
@@ -98,6 +106,10 @@ public class ConversationPage {
     @FindBy(xpath = "//*[@class='styles__Header-sc-1wa2pv7-2 eYhViq']")
     @CacheLookup
     WebElement headerFromProfileForm;
+
+    @FindBy(xpath = "//*[@data-spot-im-class=\"rich-editor-input\"]/div/div[1]/div[1]")
+    @CacheLookup
+    WebElement commentPlaceholder;
 
     WebDriver driver;
 
@@ -221,10 +233,16 @@ public class ConversationPage {
         }
     }
 
-    public void clickOnComment() {
+    public void clickOnComment(String userType) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.withTimeout(10, TimeUnit.SECONDS);
         Log.info("Clicking on Comment");
         try {
-            addComment.click();
+            if (userType.equals("Guest")) {
+                addCommentGuest.click();
+            }else if (userType.equals("User")){
+                clickCommentUser.click();
+            }
         } catch (Exception e) {
             Log.info("Error clicking on Comment");
         }
@@ -248,16 +266,22 @@ public class ConversationPage {
         }
     }
 
-    public void enterComment(String myComment) {
+    public void enterComment(String userType,String myComment) {
         Log.info("Entering Comment");
         try {
-            addComment.sendKeys(myComment);
+            if (userType.equals("Guest")) {
+                addCommentGuest.sendKeys(myComment);
+            }else if (userType.equals("User")){
+                addCommentUser.sendKeys(myComment);
+            }
         } catch (Exception e) {
             Log.info("Error Entering Comment");
         }
     }
 
     public String getUserNameAfterLogin() {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.withTimeout(10, TimeUnit.SECONDS);
         String fullNickName = null;
         Log.info("Getting user name after login");
         try {
@@ -269,9 +293,21 @@ public class ConversationPage {
         return fullNickName;
     }
 
+    public String getCommentPlaceholder() {
+        String title = null;
+        Log.info("Getting Comment placeHolder");
+        try {
+            title = commentPlaceholder.getAttribute("data-placeholder");
+            Log.info("Comment placeHolder is : " + title);
+        } catch (Exception e) {
+            Log.info("Error getting Comment placeHolder");
+        }
+        return title;
+    }
+
     public String getUserNameBeforeLogin() {
         WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.withTimeout(5, TimeUnit.SECONDS);
+        wait.withTimeout(10, TimeUnit.SECONDS);
         String fullNickName = null;
         Log.info("Getting user name before login");
         try {
@@ -308,11 +344,15 @@ public class ConversationPage {
         return fullSuccess;
     }
 
-    public String getComment() {
+    public String getComment(String userType) {
         String fullComment = null;
-        Log.info("Getting comment");
+        Log.info("Getting comment as "+userType);
         try {
-            fullComment = addComment.getText();
+            if (userType.equals("Guest")) {
+                fullComment = addCommentGuest.getText();
+            }else if (userType.equals("User")){
+                fullComment = addCommentUser.getText();
+            }
             Log.info("The comment is: " + fullComment);
         } catch (Exception e) {
             Log.info("Error getting the comment");
