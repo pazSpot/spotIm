@@ -4,7 +4,7 @@ import com.jayway.restassured.path.json.JsonPath;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
-import utilities.Log;
+
 import utilities.conversation.ConversationApiUtilities;
 
 public class Comment extends ConversationApiUtilities {

@@ -1,7 +1,6 @@
 package utilities.conversation;
 
 import com.jayway.restassured.path.json.JsonPath;
-import jdk.javadoc.doclet.Reporter;
 import org.testng.SkipException;
 
 import static com.jayway.restassured.RestAssured.given;

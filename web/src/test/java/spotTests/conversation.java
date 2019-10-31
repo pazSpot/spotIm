@@ -34,8 +34,7 @@ public class conversation extends BasePage {
 
         ConversationPage.clickOnPost();
 
-        // need to add assert for the comment !!!
-
+        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "commentAsUser", dataProviderClass = DataProvider.class)
@@ -60,6 +59,7 @@ public class conversation extends BasePage {
 
         ConversationPage.clickOnPost();
 
+        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
@@ -83,6 +83,8 @@ public class conversation extends BasePage {
         ConversationPage.clickOnOneOfTheGifs();
 
         ConversationPage.clickOnPost();
+        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
+
     }
 
     @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
@@ -110,6 +112,8 @@ public class conversation extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(ConversationPage.getPic()));
 
         ConversationPage.clickOnPost();
+        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
+
     }
 
     @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
@@ -141,6 +145,7 @@ public class conversation extends BasePage {
         wait.until(ExpectedConditions.invisibilityOf(ConversationPage.getPic()));
 
         ConversationPage.clickOnPost();
+        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "sortList", dataProviderClass = DataProvider.class)

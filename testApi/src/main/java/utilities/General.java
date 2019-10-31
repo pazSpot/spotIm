@@ -8,13 +8,10 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.logging.Logger;
 
-import static java.lang.Math.*;
-import static java.lang.StrictMath.abs;
-
 
 public class General {
     protected static final Logger log = Logger.getLogger(String.valueOf(General.class));
-    public static  SecureRandom random = new SecureRandom();
+    public static SecureRandom random = new SecureRandom();
 
     /**
      * Create a random Number
@@ -27,10 +24,9 @@ public class General {
         for (int i = 0; i < len; i++)
             sb.append(AB.charAt(rnd.nextInt(AB.length())));
         Number = Integer.parseInt(sb.toString());
-        if (Number<=max){
+        if (Number <= max) {
             return Number;
-        }
-        else {
+        } else {
             return max;
         }
     }
@@ -49,7 +45,6 @@ public class General {
     }
 
 
-
     public static String randomName() {
         String SALTCHARS = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder salt = new StringBuilder();
@@ -61,7 +56,6 @@ public class General {
         String saltStr = salt.toString();
         return saltStr;
     }
-
 
 
     public static String randomSession() {
@@ -88,7 +82,7 @@ public class General {
                 sb.setCharAt(index, Character.toLowerCase(c));
             }
         }
-         return sb.toString();
+        return sb.toString();
     }
 
     /**

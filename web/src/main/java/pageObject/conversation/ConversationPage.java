@@ -111,6 +111,14 @@ public class ConversationPage {
     @CacheLookup
     WebElement commentPlaceholder;
 
+    @FindBy(xpath = "//*[@data-spot-im-class=\"message-view\"]/div/div/div/div[2]/div[1]")
+    @CacheLookup
+    WebElement allOnlyComments;
+
+    @FindBy(xpath = "//*[@data-spot-im-class=\"message-view\"]/div/div/div/div[2]/div[2]")
+    @CacheLookup
+    WebElement allOnlyPicGifComments;
+
     WebDriver driver;
 
     public ConversationPage(WebDriver driver) {
@@ -370,6 +378,21 @@ public class ConversationPage {
         } catch (Exception e) {
             Log.info("Error clicking on one of the GIFs");
         }
+    }
+
+    public String getTheFirstComment() {
+        String firstComment = null;
+        Log.info("Getting the first comment");
+        try {
+            List<WebElement> comments = driver.findElements(By.xpath("//*[@data-spot-im-class=\"message-view\"]/div/div/div/div[2]/div[1]"));
+            for (int x = 0; x < comments.size(); x++) {
+                firstComment=comments.get(x).getText();
+                Log.info("The first comment is "+firstComment);
+                comments.get(x).click();
+            }
+        } catch (Exception e) {
+            Log.info("Error Getting the first comment");
+        }return firstComment;
     }
 
     public WebElement getPic() {
