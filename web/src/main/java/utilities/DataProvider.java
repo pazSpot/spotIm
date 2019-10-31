@@ -113,9 +113,9 @@ public class DataProvider extends BasePage {
     @org.testng.annotations.DataProvider(name = "sortList")
     public Object[][] sortList() throws Exception {
         return new Object[][]{
+                {"Oldest"},
                 {"Best"},
                 {"Newest"},
-                {"Oldest"},
         };
     }
 

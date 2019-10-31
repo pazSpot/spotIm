@@ -21,6 +21,18 @@ public class StarReviewsPage {
     protected final static By commentEditor = By.className("spcv_editor");
 
 
+    @FindBy(xpath = "//*[@class=\"spcv_sort-by\"]/span")
+    @CacheLookup
+    WebElement sortByName;
+
+    @FindBy(xpath = "//*[@data-spot-im-class=\"message-timestamp\"]")
+    @CacheLookup
+    WebElement commentsTimeStamp;
+
+    @FindBy(xpath = "class=\"spcv_droplist\"")
+    @CacheLookup
+    WebElement sortByList;
+
     @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[1]/div[1]/input")
     @CacheLookup
     WebElement nickName;
@@ -28,14 +40,6 @@ public class StarReviewsPage {
     @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]")
     @CacheLookup
     WebElement addComment;
-
-    @FindBy(xpath = "//*[@class=\"spcv_sort-by\"]/span")
-    @CacheLookup
-    WebElement sortByName;
-
-    @FindBy(xpath = "class=\"spcv_droplist\"")
-    @CacheLookup
-    WebElement sortByList;
 
     @FindBy(xpath = "class=\"spcv_stars-rating spcv_rich-editor\"")
     @CacheLookup
@@ -48,7 +52,6 @@ public class StarReviewsPage {
         PageFactory.initElements(driver, this);
     }
 
-
     public void clickOnSortBy() {
         Log.info("Clicking on SortBy");
         try {
@@ -57,35 +60,6 @@ public class StarReviewsPage {
             Log.info("Error clicking on SortBy");
         }
     }
-
-
-    public String getSortName() {
-        String fullSortName = null;
-        Log.info("Getting sort name");
-        try {
-            fullSortName = sortByName.getText();
-            Log.info("The sort name is: " + fullSortName);
-        } catch (Exception e) {
-            Log.info("Error getting sort name");
-        }
-        return fullSortName;
-    }
-
-
-    public int getFullStarRating() {
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        int fullStarReview = 0;
-        Log.info("Getting Star rating");
-        try {
-            wait.until(ExpectedConditions.attributeToBe(By.xpath("//*[@data-spot-im-class=\"rich-editor-wrapper\"]"), "data-expanded", "true"));
-            fullStarReview = driver.findElement(commentEditor).findElement(starRatingEditing).findElements(starRatingFull).size();
-            Log.info("The Star rating is: " + fullStarReview);
-        } catch (Exception e) {
-            Log.info("Error getting Star rating");
-        }
-        return fullStarReview;
-    }
-
 
     public void chooseSortByFromList(String sortByOption) {
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -105,17 +79,41 @@ public class StarReviewsPage {
         }
     }
 
+    public int getFullStarRating() {
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        int fullStarReview = 0;
+        Log.info("Getting Star rating");
+        try {
+            wait.until(ExpectedConditions.attributeToBe(By.xpath("//*[@data-spot-im-class=\"rich-editor-wrapper\"]"), "data-expanded", "true"));
+            fullStarReview = driver.findElement(commentEditor).findElement(starRatingEditing).findElements(starRatingFull).size();
+            Log.info("The Star rating is: " + fullStarReview);
+        } catch (Exception e) {
+            Log.info("Error getting Star rating");
+        }
+        return fullStarReview;
+    }
+
+    public String getSortName() {
+        String fullSortName = null;
+        Log.info("Getting sort name");
+        try {
+            fullSortName = sortByName.getText();
+            Log.info("The sort name is: " + fullSortName);
+        } catch (Exception e) {
+            Log.info("Error getting sort name");
+        }
+        return fullSortName;
+    }
+
     public void chooseRating(By ratingRoot, int stars) {
         WebElement rating = driver.findElement(ratingRoot);
         rating.findElement(starRatingEditing).findElements(starRating).get(stars - 1).click();
-
     }
 
     public void rateFromHeader(int stars) throws Exception {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.visibilityOfElementLocated(starRatingHeader));
         chooseRating(starRatingHeader, stars);
-
     }
 
 }

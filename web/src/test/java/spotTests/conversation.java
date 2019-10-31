@@ -5,7 +5,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.conversation.ConversationPage;
-import pageObject.conversation.StarReviewsPage;
 import utilities.BasePage;
 import utilities.DataProvider;
 import utilities.UiUtilities;
@@ -19,71 +18,71 @@ public class conversation extends BasePage {
 
     @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
     public void postCommentAsGuestConversation(String userType, String nickName, String comment, String actualName) throws Exception {
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnNickName();
-        ConversationPage.enterNickName(nickName);
-        ConversationPage.clickOnComment(userType);
-        ConversationPage.enterComment(userType, comment);
+        conversationPage.clickOnNickName();
+        conversationPage.enterNickName(nickName);
+        conversationPage.clickOnComment(userType);
+        conversationPage.enterComment(userType, comment);
 
-        Assert.assertEquals(ConversationPage.getNickName(), actualName, "Error nickName not equal data provider");
-        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
+        Assert.assertEquals(conversationPage.getNickName(), actualName, "Error nickName not equal data provider");
+        Assert.assertEquals(conversationPage.getComment(userType), comment, "Error comment not equal data provider");
 
-        ConversationPage.clickOnPost();
+        conversationPage.clickOnPost();
 
-        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
+        Assert.assertEquals(conversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "commentAsUser", dataProviderClass = DataProvider.class)
     public void postCommentAsLoginUserConversation(String userType, String email, String password, String actualName, String comment) throws Exception {
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnLogInHomePageButton();
-        ConversationPage.insertUserEmail(email);
-        ConversationPage.insertUserPassword(password);
-        ConversationPage.clickOnLoginButton();
-        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), actualName, "Error: user name doesn't matching to DP");
+        conversationPage.clickOnLogInHomePageButton();
+        conversationPage.insertUserEmail(email);
+        conversationPage.insertUserPassword(password);
+        conversationPage.clickOnLoginButton();
+        Assert.assertEquals(conversationPage.getUserNameAfterLogin(), actualName, "Error: user name doesn't matching to DP");
 
-        ConversationPage.clickOnComment(userType);
-        Assert.assertEquals(ConversationPage.getCommentPlaceholder(), "Add a comment...", "Error comment not equal data provider");
+        conversationPage.clickOnComment(userType);
+        Assert.assertEquals(conversationPage.getCommentPlaceholder(), "Add a comment...", "Error comment not equal data provider");
 
-        ConversationPage.enterComment(userType, comment);
+        conversationPage.enterComment(userType, comment);
 
-        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
+        Assert.assertEquals(conversationPage.getComment(userType), comment, "Error comment not equal data provider");
 
-        ConversationPage.clickOnPost();
+        conversationPage.clickOnPost();
 
-        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
+        Assert.assertEquals(conversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "conversation", dataProviderClass = DataProvider.class)
     public void postGIFCommentAsGuestInConversation(String userType, String nickName, String comment, String actualName) throws Exception {
 
         UiUtilities uiUtilities = new UiUtilities(driver);
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnNickName();
-        ConversationPage.enterNickName(nickName);
+        conversationPage.clickOnNickName();
+        conversationPage.enterNickName(nickName);
 
-        ConversationPage.clickOnComment(userType);
-        ConversationPage.enterComment(userType, comment);
+        conversationPage.clickOnComment(userType);
+        conversationPage.enterComment(userType, comment);
 
-        Assert.assertEquals(ConversationPage.getNickName(), actualName, "Error nickName not equal data provider");
-        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
+        Assert.assertEquals(conversationPage.getNickName(), actualName, "Error nickName not equal data provider");
+        Assert.assertEquals(conversationPage.getComment(userType), comment, "Error comment not equal data provider");
 
-        ConversationPage.clickOnGifButton();
-        ConversationPage.clickOnOneOfTheGifs();
+        conversationPage.clickOnGifButton();
+        conversationPage.clickOnOneOfTheGifs();
 
-        ConversationPage.clickOnPost();
-        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
+        conversationPage.clickOnPost();
+        Assert.assertEquals(conversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
 
     }
 
@@ -92,27 +91,27 @@ public class conversation extends BasePage {
 
         WebDriverWait wait = new WebDriverWait(driver, 20);
         UiUtilities uiUtilities = new UiUtilities(driver);
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnNickName();
-        ConversationPage.enterNickName(nickName);
+        conversationPage.clickOnNickName();
+        conversationPage.enterNickName(nickName);
 
-        ConversationPage.clickOnComment(userType);
-        ConversationPage.enterComment(userType, comment);
+        conversationPage.clickOnComment(userType);
+        conversationPage.enterComment(userType, comment);
 
-        Assert.assertEquals(ConversationPage.getNickName(), actualName, "Error nickName not equal data provider");
-        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
+        Assert.assertEquals(conversationPage.getNickName(), actualName, "Error nickName not equal data provider");
+        Assert.assertEquals(conversationPage.getComment(userType), comment, "Error comment not equal data provider");
 
         File file = new File("/Users/pazezrati/IdeaProjects/spotIm/web/giphy.gif");
         String path = file.getAbsolutePath();
-        ConversationPage.sendPhoto(path);
+        conversationPage.sendPhoto(path);
 
-        wait.until(ExpectedConditions.visibilityOf(ConversationPage.getPic()));
+        wait.until(ExpectedConditions.visibilityOf(conversationPage.getPic()));
 
-        ConversationPage.clickOnPost();
-        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
+        conversationPage.clickOnPost();
+        Assert.assertEquals(conversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
 
     }
 
@@ -121,135 +120,137 @@ public class conversation extends BasePage {
 
         WebDriverWait wait = new WebDriverWait(driver, 20);
         UiUtilities uiUtilities = new UiUtilities(driver);
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnNickName();
-        ConversationPage.enterNickName(nickName);
+        conversationPage.clickOnNickName();
+        conversationPage.enterNickName(nickName);
 
-        ConversationPage.clickOnComment(userType);
-        ConversationPage.enterComment(userType, comment);
+        conversationPage.clickOnComment(userType);
+        conversationPage.enterComment(userType, comment);
 
-        Assert.assertEquals(ConversationPage.getNickName(), actualName, "Error nickName not equal data provider");
-        Assert.assertEquals(ConversationPage.getComment(userType), comment, "Error comment not equal data provider");
+        Assert.assertEquals(conversationPage.getNickName(), actualName, "Error nickName not equal data provider");
+        Assert.assertEquals(conversationPage.getComment(userType), comment, "Error comment not equal data provider");
 
         File file = new File("/Users/pazezrati/IdeaProjects/spotIm/web/giphy.gif");
         String path = file.getAbsolutePath();
-        ConversationPage.sendPhoto(path);
+        conversationPage.sendPhoto(path);
 
-        wait.until(ExpectedConditions.visibilityOf(ConversationPage.getPic()));
+        wait.until(ExpectedConditions.visibilityOf(conversationPage.getPic()));
 
-        ConversationPage.clickOnRemovePic();
+        conversationPage.clickOnRemovePic();
 
-        wait.until(ExpectedConditions.invisibilityOf(ConversationPage.getPic()));
+        wait.until(ExpectedConditions.invisibilityOf(conversationPage.getPic()));
 
-        ConversationPage.clickOnPost();
-        Assert.assertEquals(ConversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
+        conversationPage.clickOnPost();
+        Assert.assertEquals(conversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "sortList", dataProviderClass = DataProvider.class)
     public void clickOnSortBy(String sortName) throws Exception {
-        StarReviewsPage starReviewsPage = new StarReviewsPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         UiUtilities uiUtilities = new UiUtilities(driver);
 
         uiUtilities.openBrandHomePage("conversation");
-        starReviewsPage.clickOnSortBy();
-        starReviewsPage.chooseSortByFromList(sortName);
+        conversationPage.clickOnSortBy();
+        conversationPage.chooseSortByFromList(sortName);
 
-        Assert.assertEquals(starReviewsPage.getSortName(), sortName, "Error: sort name doesn't match to DP");
+        Assert.assertEquals(conversationPage.getSortName(), sortName, "Error: sort name doesn't match to DP");
+
+        conversationPage.getTheCommentsTimeStamp(sortName);
     }
 
     @Test(alwaysRun = true, dataProvider = "conversationLogin", dataProviderClass = DataProvider.class)
     public void logInProfileConversation(String email, String password, String actualName) throws Exception {
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnLogInHomePageButton();
-        ConversationPage.insertUserEmail(email);
-        ConversationPage.insertUserPassword(password);
-        ConversationPage.clickOnLoginButton();
+        conversationPage.clickOnLogInHomePageButton();
+        conversationPage.insertUserEmail(email);
+        conversationPage.insertUserPassword(password);
+        conversationPage.clickOnLoginButton();
 
-        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), actualName, "Error: user name dosn't matching to DP");
+        Assert.assertEquals(conversationPage.getUserNameAfterLogin(), actualName, "Error: user name dosn't matching to DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "conversationLogin", dataProviderClass = DataProvider.class)
     public void logOutProfileConversation(String email, String password, String actualName) throws Exception {
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnLogInHomePageButton();
-        ConversationPage.insertUserEmail(email);
-        ConversationPage.insertUserPassword(password);
-        ConversationPage.clickOnLoginButton();
+        conversationPage.clickOnLogInHomePageButton();
+        conversationPage.insertUserEmail(email);
+        conversationPage.insertUserPassword(password);
+        conversationPage.clickOnLoginButton();
 
-        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), actualName, "Error: user name doesn't matching to DP");
+        Assert.assertEquals(conversationPage.getUserNameAfterLogin(), actualName, "Error: user name doesn't matching to DP");
 
-        ConversationPage.clickOnHandlerAfterLogin();
-        ConversationPage.chooseUserOptionsFromHandlerList("Log Out");
-        Assert.assertEquals(ConversationPage.getUserNameBeforeLogin(), "Log In", "Error: user name doesn't matching to DP");
+        conversationPage.clickOnHandlerAfterLogin();
+        conversationPage.chooseUserOptionsFromHandlerList("Log Out");
+        Assert.assertEquals(conversationPage.getUserNameBeforeLogin(), "Log In", "Error: user name doesn't matching to DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "conversationSignUp", dataProviderClass = DataProvider.class)
     public void joinProfileConversation(String userName, String email, String password) throws Exception {
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnLogInHomePageButton();
-        ConversationPage.clickOnJoinFormButton();
+        conversationPage.clickOnLogInHomePageButton();
+        conversationPage.clickOnJoinFormButton();
 
-        ConversationPage.insertUserName(userName);
-        ConversationPage.insertUserEmail(email);
-        ConversationPage.insertUserPassword(password);
+        conversationPage.insertUserName(userName);
+        conversationPage.insertUserEmail(email);
+        conversationPage.insertUserPassword(password);
 
         Thread.sleep(6000); // waiting for login button will be enable
-        ConversationPage.clickOnLoginButton();
+        conversationPage.clickOnLoginButton();
         Thread.sleep(6000); // waiting for loader
 
-        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), userName, "Error: user name dosn't matching to DP");
+        Assert.assertEquals(conversationPage.getUserNameAfterLogin(), userName, "Error: user name dosn't matching to DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "forgotPassword", dataProviderClass = DataProvider.class)
     public void forgotPasswordConversation(String email, String forgotPassword) throws Exception {
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnLogInHomePageButton();
-        ConversationPage.clickOnForgotPasswordButton();
-        ConversationPage.insertUserEmail(email);
-        ConversationPage.clickOnLoginButton();
+        conversationPage.clickOnLogInHomePageButton();
+        conversationPage.clickOnForgotPasswordButton();
+        conversationPage.insertUserEmail(email);
+        conversationPage.clickOnLoginButton();
 
-        Assert.assertEquals(ConversationPage.getForgotPasswordSuccessMessage(), forgotPassword, "Error: forgot password doesn't match DP");
+        Assert.assertEquals(conversationPage.getForgotPasswordSuccessMessage(), forgotPassword, "Error: forgot password doesn't match DP");
     }
 
     @Test(alwaysRun = true, dataProvider = "userOptions", dataProviderClass = DataProvider.class)
     public void profileMyActivityConversation(String email, String password, String actualName, String option, String header) throws Exception {
 
-        ConversationPage ConversationPage = new ConversationPage(driver);
+        ConversationPage conversationPage = new ConversationPage(driver);
         UiUtilities uiUtilities = new UiUtilities(driver);
 
         uiUtilities.openBrandHomePage("conversation");
 
-        ConversationPage.clickOnLogInHomePageButton();
-        ConversationPage.insertUserEmail(email);
-        ConversationPage.insertUserPassword(password);
-        ConversationPage.clickOnLoginButton();
+        conversationPage.clickOnLogInHomePageButton();
+        conversationPage.insertUserEmail(email);
+        conversationPage.insertUserPassword(password);
+        conversationPage.clickOnLoginButton();
 
-        Assert.assertEquals(ConversationPage.getUserNameAfterLogin(), actualName, "Error: user name dosn't matching to DP");
+        Assert.assertEquals(conversationPage.getUserNameAfterLogin(), actualName, "Error: user name dosn't matching to DP");
 
-        ConversationPage.clickOnHandlerAfterLogin();
-        ConversationPage.chooseUserOptionsFromHandlerList(option);
+        conversationPage.clickOnHandlerAfterLogin();
+        conversationPage.chooseUserOptionsFromHandlerList(option);
 
-        Assert.assertEquals(ConversationPage.getHeaderAfterHandler(), header, "Error: header does not match DP");
+        Assert.assertEquals(conversationPage.getHeaderAfterHandler(), header, "Error: header does not match DP");
     }
 }

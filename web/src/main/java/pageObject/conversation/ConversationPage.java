@@ -15,6 +15,18 @@ import java.util.concurrent.TimeUnit;
 
 public class ConversationPage {
 
+    @FindBy(xpath = "//*[@class=\"spcv_sort-by\"]/span")
+    @CacheLookup
+    WebElement sortByName;
+
+    @FindBy(xpath = "//*[@data-spot-im-class=\"message-timestamp\"]")
+    @CacheLookup
+    WebElement commentsTimeStamp;
+
+    @FindBy(xpath = "class=\"spcv_droplist\"")
+    @CacheLookup
+    WebElement sortByList;
+
     @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[1]/div[1]/input")
     @CacheLookup
     WebElement nickName;
@@ -313,6 +325,45 @@ public class ConversationPage {
         return title;
     }
 
+    public void clickOnSortBy() {
+        Log.info("Clicking on SortBy");
+        try {
+            sortByName.click();
+        } catch (Exception e) {
+            Log.info("Error clicking on SortBy");
+        }
+    }
+
+    public void chooseSortByFromList(String sortByOption) {
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        Log.info("Choosing sort by");
+        try {
+            List<WebElement> sortBy = driver.findElements(By.xpath("//*[@class=\"spcv_droplist\"]/li"));
+            for (int x = 0; x < sortBy.size(); x++) {
+                if (sortBy.get(x).getText().contains(sortByOption)) {
+                    Log.info("Clicking on " + sortBy.get(x).getText() + " from sort by list");
+                    sortBy.get(x).click();
+                    wait.until(ExpectedConditions.invisibilityOf(sortByList));
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            Log.info("Error choosing sort by "+sortByOption);
+        }
+    }
+
+    public String getSortName() {
+        String fullSortName = null;
+        Log.info("Getting sort name");
+        try {
+            fullSortName = sortByName.getText();
+            Log.info("The sort name is: " + fullSortName);
+        } catch (Exception e) {
+            Log.info("Error getting sort name");
+        }
+        return fullSortName;
+    }
+
     public String getUserNameBeforeLogin() {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.withTimeout(10, TimeUnit.SECONDS);
@@ -374,6 +425,7 @@ public class ConversationPage {
             List<WebElement> gifs = driver.findElements(By.xpath("//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[2]/div/span/div[2]/div/div/div/div/div"));
             for (int x = 0; x < gifs.size(); x++) {
                 gifs.get(x).click();
+                break;
             }
         } catch (Exception e) {
             Log.info("Error clicking on one of the GIFs");
@@ -389,10 +441,27 @@ public class ConversationPage {
                 firstComment=comments.get(x).getText();
                 Log.info("The first comment is "+firstComment);
                 comments.get(x).click();
+                break;
             }
         } catch (Exception e) {
             Log.info("Error Getting the first comment");
         }return firstComment;
+    }
+
+    public String getTheCommentsTimeStamp(String sortName) {
+        String firstCommentTimeStamp = null;
+        Log.info("Getting the first comment time stamp");
+        try {
+            List<WebElement> commentsTimeStamps = driver.findElements(By.xpath("//*[@data-spot-im-class=\"message-timestamp\"]"));
+            for (int x = 0; x < commentsTimeStamps.size(); x++) {
+                firstCommentTimeStamp=commentsTimeStamps.get(x).getText();
+                Log.info("The first comment time stamp is "+firstCommentTimeStamp+ " this is the "+sortName+" comment");
+                commentsTimeStamps.get(x).click();
+                break;
+            }
+        } catch (Exception e) {
+            Log.info("Error Getting the first comment time stamp");
+        }return firstCommentTimeStamp;
     }
 
     public WebElement getPic() {
