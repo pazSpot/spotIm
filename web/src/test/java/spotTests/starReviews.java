@@ -22,7 +22,7 @@ public class starReviews extends BasePage {
         uiUtilities.openBrandHomePage("starReviews");
         starReviewsPage.rateFromHeader(fullStarRating);
 
-        Assert.assertEquals(starReviewsPage.getFullStarRating(),fullStarRating,"Error: full star rating doesn't match to DP");
+        Assert.assertEquals(starReviewsPage.getFullStarRating(), fullStarRating, "Error: full star rating doesn't match to DP");
 
 
     }
@@ -38,7 +38,7 @@ public class starReviews extends BasePage {
         starReviewsPage.clickOnSortBy();
         starReviewsPage.chooseSortByFromList(sortName);
 
-        Assert.assertEquals(starReviewsPage.getSortName(),sortName,"Error: sort name doesn't match to DP");
+        Assert.assertEquals(starReviewsPage.getSortName(), sortName, "Error: sort name doesn't match to DP");
     }
 }
 

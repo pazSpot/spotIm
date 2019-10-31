@@ -187,7 +187,7 @@ public class ConversationPage {
     }
 
     public void insertUserEmail(String userEmail) {
-        Log.info("Entering user email "+userEmail);
+        Log.info("Entering user email " + userEmail);
         try {
             userEmailForm.sendKeys(userEmail);
         } catch (Exception e) {
@@ -198,7 +198,7 @@ public class ConversationPage {
     public void insertUserName(String userName) {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOf(integrationBox));
-        Log.info("Entering user name "+ userName);
+        Log.info("Entering user name " + userName);
         try {
             userNameForm.sendKeys(userName);
         } catch (Exception e) {
@@ -207,7 +207,7 @@ public class ConversationPage {
     }
 
     public void insertUserPassword(String userPassword) {
-        Log.info("Entering user password "+userPassword);
+        Log.info("Entering user password " + userPassword);
         try {
             userPasswordForm.sendKeys(userPassword);
         } catch (Exception e) {
@@ -216,7 +216,7 @@ public class ConversationPage {
     }
 
     public void enterNickName(String myNickName) {
-        Log.info("Entering nick name "+myNickName);
+        Log.info("Entering nick name " + myNickName);
         try {
             nickName.sendKeys(myNickName);
         } catch (Exception e) {
@@ -240,7 +240,7 @@ public class ConversationPage {
         try {
             if (userType.equals("Guest")) {
                 addCommentGuest.click();
-            }else if (userType.equals("User")){
+            } else if (userType.equals("User")) {
                 clickCommentUser.click();
             }
         } catch (Exception e) {
@@ -266,12 +266,12 @@ public class ConversationPage {
         }
     }
 
-    public void enterComment(String userType,String myComment) {
+    public void enterComment(String userType, String myComment) {
         Log.info("Entering Comment");
         try {
             if (userType.equals("Guest")) {
                 addCommentGuest.sendKeys(myComment);
-            }else if (userType.equals("User")){
+            } else if (userType.equals("User")) {
                 addCommentUser.sendKeys(myComment);
             }
         } catch (Exception e) {
@@ -346,11 +346,11 @@ public class ConversationPage {
 
     public String getComment(String userType) {
         String fullComment = null;
-        Log.info("Getting comment as "+userType);
+        Log.info("Getting comment as " + userType);
         try {
             if (userType.equals("Guest")) {
                 fullComment = addCommentGuest.getText();
-            }else if (userType.equals("User")){
+            } else if (userType.equals("User")) {
                 fullComment = addCommentUser.getText();
             }
             Log.info("The comment is: " + fullComment);
@@ -385,7 +385,7 @@ public class ConversationPage {
 
 
     public void chooseUserOptionsFromHandlerList(String option) {
-        System.out.println("Choosing option "+option);
+        System.out.println("Choosing option " + option);
         try {
             List<WebElement> options = driver.findElements(By.xpath("//*[@class='spcv_item']"));
             for (int x = 0; x < options.size(); x++) {

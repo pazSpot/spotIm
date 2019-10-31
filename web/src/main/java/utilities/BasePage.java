@@ -2,7 +2,6 @@ package utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
@@ -15,7 +14,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.logging.Level;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -36,14 +34,12 @@ public class BasePage {
     public static String testName;
 
 
-
     public WebDriver driver = null;
     public WebDriverWait wait = null;
 
 
     public static String session;
     protected ThreadLocal<RemoteWebDriver> driverContainer = new ThreadLocal<>(); //driver container for driver thread save when working in parallel
-
 
 
     private static final int TIMEOUT = 10;
@@ -115,7 +111,7 @@ public class BasePage {
 
         } else if (GridToRunTests.equals("myMachine")) {
 
-           gridURL = "http://localhost:4444/wd/hub";
+            gridURL = "http://localhost:4444/wd/hub";
 
             Log.info("grid to run  - myMachine ");
 

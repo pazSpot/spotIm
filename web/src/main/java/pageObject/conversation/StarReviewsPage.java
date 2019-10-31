@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import utilities.Log;
 
 import java.util.List;
@@ -20,7 +19,6 @@ public class StarReviewsPage {
     protected final static By starRatingEditing = By.className("spcv_editing");
     protected final static By starRatingFull = By.className("spcv_full");
     protected final static By commentEditor = By.className("spcv_editor");
-
 
 
     @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[1]/div[1]/input")
@@ -75,11 +73,11 @@ public class StarReviewsPage {
 
 
     public int getFullStarRating() {
-        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         int fullStarReview = 0;
         Log.info("Getting Star rating");
         try {
-            wait.until(ExpectedConditions.attributeToBe(By.xpath("//*[@data-spot-im-class=\"rich-editor-wrapper\"]"),"data-expanded","true"));
+            wait.until(ExpectedConditions.attributeToBe(By.xpath("//*[@data-spot-im-class=\"rich-editor-wrapper\"]"), "data-expanded", "true"));
             fullStarReview = driver.findElement(commentEditor).findElement(starRatingEditing).findElements(starRatingFull).size();
             Log.info("The Star rating is: " + fullStarReview);
         } catch (Exception e) {
@@ -90,7 +88,7 @@ public class StarReviewsPage {
 
 
     public void chooseSortByFromList(String sortByOption) {
-        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         Log.info("Choosing sort by");
         try {
             List<WebElement> sortBy = driver.findElements(By.xpath("//*[@class=\"spcv_droplist\"]/li"));
@@ -107,16 +105,16 @@ public class StarReviewsPage {
         }
     }
 
-    public void chooseRating(By ratingRoot, int stars){
+    public void chooseRating(By ratingRoot, int stars) {
         WebElement rating = driver.findElement(ratingRoot);
-        rating.findElement(starRatingEditing).findElements(starRating).get(stars-1).click();
+        rating.findElement(starRatingEditing).findElements(starRating).get(stars - 1).click();
 
     }
 
     public void rateFromHeader(int stars) throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.visibilityOfElementLocated(starRatingHeader));
-        chooseRating(starRatingHeader,stars);
+        chooseRating(starRatingHeader, stars);
 
     }
 

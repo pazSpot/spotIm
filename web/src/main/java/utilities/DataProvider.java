@@ -42,9 +42,9 @@ public class DataProvider extends BasePage {
     @org.testng.annotations.DataProvider(name = "conversation")
     public Object[][] conversation() throws Exception {
         return new Object[][]{
-                {"Guest","my name is : spoti !", " Hello World !!!", "my name is : sp"},
-                {"Guest","my name is : QA !", " Hello World !!!", "my name is : QA"},
-                {"Guest","my name is : Automation !", " Hello World !!!", "my name is : Au"},
+                {"Guest", "my name is : spoti !", " Hello World !!!", "my name is : sp"},
+                {"Guest", "my name is : QA !", " Hello World !!!", "my name is : QA"},
+                {"Guest", "my name is : Automation !", " Hello World !!!", "my name is : Au"},
 
         };
     }
@@ -52,10 +52,11 @@ public class DataProvider extends BasePage {
     @org.testng.annotations.DataProvider(name = "commentAsUser")
     public Object[][] commentAsUser() throws Exception {
         return new Object[][]{
-                {"User","automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", " Hello World !!!"},
-                {"User","automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", " Hello Spot IM "},
+                {"User", "automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", " Hello World !!!"},
+                {"User", "automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", " Hello Spot IM "},
         };
     }
+
     @org.testng.annotations.DataProvider(name = "conversationLogin")
     public Object[][] conversationLogin() throws Exception {
         return new Object[][]{
@@ -70,9 +71,9 @@ public class DataProvider extends BasePage {
     @org.testng.annotations.DataProvider(name = "userOptions")
     public Object[][] userOptions() throws Exception {
         return new Object[][]{
-                {"automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl","Profile","My Activity"},
-                {"automation_gas@spot.im", "Abc123456789!", "Automation_OPV","Settings","My Settings"},
-                {"automation_hGr@spot.im", "Abc123456789!", "Automation_faV","Privacy","My Privacy"},
+                {"automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", "Profile", "My Activity"},
+                {"automation_gas@spot.im", "Abc123456789!", "Automation_OPV", "Settings", "My Settings"},
+                {"automation_hGr@spot.im", "Abc123456789!", "Automation_faV", "Privacy", "My Privacy"},
 //                {"automation_hGr@spot.im", "Abc123456789!", "Automation_faV","Log Out",""},
         };
     }
@@ -80,21 +81,21 @@ public class DataProvider extends BasePage {
     @org.testng.annotations.DataProvider(name = "conversationSignUp")
     public Object[][] conversationSignUp() throws Exception {
         return new Object[][]{
-                {"Automation_"+random(),"automation_"+random()+"@spot.im", "Abc123456789!"},
-                {"Automation_"+random(),"automation_"+random()+"@spot.im", "Abc123456789!"},
-                {"Automation_"+random(),"automation_"+random()+"@spot.im", "Abc123456789!"},
-                {"Automation_"+random(),"automation_"+random()+"@spot.im", "Abc123456789!"},
+                {"Automation_" + random(), "automation_" + random() + "@spot.im", "Abc123456789!"},
+                {"Automation_" + random(), "automation_" + random() + "@spot.im", "Abc123456789!"},
+                {"Automation_" + random(), "automation_" + random() + "@spot.im", "Abc123456789!"},
+                {"Automation_" + random(), "automation_" + random() + "@spot.im", "Abc123456789!"},
         };
     }
 
     @org.testng.annotations.DataProvider(name = "forgotPassword")
     public Object[][] forgotPassword() throws Exception {
         return new Object[][]{
-                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
-                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
-                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
-                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
-                {"Automation_"+random()+"@spot.im","Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_" + random() + "@spot.im", "Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_" + random() + "@spot.im", "Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_" + random() + "@spot.im", "Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_" + random() + "@spot.im", "Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
+                {"Automation_" + random() + "@spot.im", "Okay, we sent you an email with a reset link. If you don’t receive it within a few minutes, please try again."},
         };
     }
 
