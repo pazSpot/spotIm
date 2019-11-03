@@ -19,6 +19,18 @@ public class ConversationPage {
     @CacheLookup
     WebElement sortByName;
 
+    @FindBy(xpath = "//*[@data-testid=\"close-button\"]")
+    @CacheLookup
+    WebElement createYourProfileCloseButton;
+
+    @FindBy(xpath = "//*[@data-testid=\"username-input\"]")
+    @CacheLookup
+    WebElement createYourProfileUsernameInput;
+
+    @FindBy(xpath = "//*[@data-testid=\"close-button\"]")
+    @CacheLookup
+    WebElement createYourProfileNextButton;
+
     @FindBy(xpath = "//*[@data-spot-im-class=\"message-timestamp\"]")
     @CacheLookup
     WebElement commentsTimeStamp;
@@ -131,6 +143,22 @@ public class ConversationPage {
     @CacheLookup
     WebElement allOnlyPicGifComments;
 
+    @FindBy(xpath = "//*[@class=\"spcv_title\"]")
+    @CacheLookup
+    WebElement createYourProfileTitle;
+
+    @FindBy(xpath = "//*[@class=\"spcv_droplist-container\"]/ul/li")
+    @CacheLookup
+    WebElement suggestionNameList;
+
+    @FindBy(xpath = "//input[@data-testid=\"username-input\"]")
+    @CacheLookup
+    WebElement userNameSuggestionInput;
+
+    @FindBy(xpath = "//input[@data-testid=\"email-input\"]")
+    @CacheLookup
+    WebElement createProfileEmailInput;
+
     WebDriver driver;
 
     public ConversationPage(WebDriver driver) {
@@ -179,6 +207,15 @@ public class ConversationPage {
         }
     }
 
+    public void clickOnNextButton() {
+        Log.info("Clicking on Create your profile next button");
+        try {
+            createYourProfileNextButton.click();
+        } catch (Exception e) {
+            Log.info("Error clicking on Create your profile next button");
+        }
+    }
+
     public void clickOnLoginButton() {
         Log.info("Clicking on Login button");
         try {
@@ -194,6 +231,15 @@ public class ConversationPage {
             nickName.click();
         } catch (Exception e) {
             Log.info("Error clicking on nick name");
+        }
+    }
+
+    public void clickOnCreateYourProfileCloseButton() {
+        Log.info("Clicking on create your profile close Button");
+        try {
+            createYourProfileCloseButton.click();
+        } catch (Exception e) {
+            Log.info("Error clicking on create your profile close Button");
         }
     }
 
@@ -250,6 +296,24 @@ public class ConversationPage {
             photoUpload.sendKeys(path);
         } catch (Exception e) {
             Log.info("Error Entering photo");
+        }
+    }
+
+    public void createYourProfileUserNameInput(String userName) {
+        Log.info("Insert user name photo - create you profile");
+        try {
+            createYourProfileUsernameInput.sendKeys(userName);
+        } catch (Exception e) {
+            Log.info("Error Insert user name photo - create you profile");
+        }
+    }
+
+    public void createYourProfileUserEmailInput(String userName) {
+        Log.info("Insert user email - create you profile");
+        try {
+            createYourProfileUsernameInput.sendKeys(userName);
+        } catch (Exception e) {
+            Log.info("Error Insert email - create you profile");
         }
     }
 
@@ -321,6 +385,18 @@ public class ConversationPage {
             Log.info("Comment placeHolder is : " + title);
         } catch (Exception e) {
             Log.info("Error getting Comment placeHolder");
+        }
+        return title;
+    }
+
+    public String getCreateYourProfilePlaceholder() {
+        String title = null;
+        Log.info("Getting Create your profile title");
+        try {
+            title = createYourProfileTitle.getText();
+            Log.info("Create your profile title is : " + title);
+        } catch (Exception e) {
+            Log.info("Error getting Create your profile title");
         }
         return title;
     }
@@ -504,6 +580,50 @@ public class ConversationPage {
             Log.info("Error getting header after handler option");
         }
         return fullHeader;
+    }
+
+    public void chooseNameFromSuggestionsList(String suggest) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.visibilityOf(suggestionNameList));
+        System.out.println("Choosing suggest that contains: " + suggest);
+        try {
+            List<WebElement> suggestionList = driver.findElements(By.xpath("//*[@class=\"spcv_droplist-container\"]/ul/li/span"));
+            for (int x = 1; x < suggestionList.size(); x++) {
+                if (suggestionList.get(x).getText().contains(suggest)) {
+                    System.out.println("Clicking on " + suggestionList.get(x).getText() + " from suggestions list");
+                    suggestionList.get(x).click();
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error choosing suggest name");
+        }
+    }
+
+    public String getSuggestNameFromInput() {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.invisibilityOf(suggestionNameList));
+        String inputName = null;
+        Log.info("Getting the suggest name from input");
+        try {
+            inputName = userNameSuggestionInput.getAttribute("value");
+            Log.info("the suggest name from input is: " + inputName);
+        } catch (Exception e) {
+            Log.info("Error getting suggest name from input");
+        }
+        return inputName;
+    }
+
+    public String getCreateYourProfileEmailPlaceholder() {
+        String emailPlaceholder = null;
+        Log.info("Getting Create your profile email placeholder");
+        try {
+            emailPlaceholder = createProfileEmailInput.getText();
+            Log.info("Create your profile title is : " + emailPlaceholder);
+        } catch (Exception e) {
+            Log.info("Error getting Create your profile email placeholder");
+        }
+        return emailPlaceholder;
     }
 
 }

@@ -49,6 +49,16 @@ public class DataProvider extends BasePage {
         };
     }
 
+    @org.testng.annotations.DataProvider(name = "createProfileConversation")
+    public Object[][] createProfileConversation() throws Exception {
+        return new Object[][]{
+                {"Guest", "my name is : spoti !", "Hello World !!!", "my name is : sp","Create your profile","automation","Your email...","Automation_" + random() + "@spot.im"},
+                {"Guest", "my name is : QA !", "Hello World !!!", "my name is : QA","Create your profile","automation","Your email...","Automation_" + random() + "@spot.im"},
+                {"Guest", "my name is : Automation !", "Hello World !!!", "my name is : Au","Create your profile","automation","Your email...","Automation_" + random() + "@spot.im"},
+
+        };
+    }
+
     @org.testng.annotations.DataProvider(name = "commentAsUser")
     public Object[][] commentAsUser() throws Exception {
         return new Object[][]{

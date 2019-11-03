@@ -253,4 +253,37 @@ public class conversation extends BasePage {
 
         Assert.assertEquals(conversationPage.getHeaderAfterHandler(), header, "Error: header does not match DP");
     }
+
+    @Test(alwaysRun = true, dataProvider = "createProfileConversation", dataProviderClass = DataProvider.class)
+    public void createYourProfileConversation(String userType, String nickName, String comment, String actualName,String placeHolderName,String nameSuggest,String placeHolderEmail,String email) throws Exception {
+        ConversationPage conversationPage = new ConversationPage(driver);
+        UiUtilities uiUtilities = new UiUtilities(driver);
+
+        uiUtilities.openBrandHomePage("conversation");
+
+        conversationPage.clickOnNickName();
+        conversationPage.enterNickName(nickName);
+        conversationPage.clickOnComment(userType);
+        conversationPage.enterComment(userType, comment);
+
+        Assert.assertEquals(conversationPage.getNickName(), actualName, "Error nickName not equal data provider");
+        Assert.assertEquals(conversationPage.getComment(userType), comment, "Error comment not equal data provider");
+
+        conversationPage.clickOnPost();
+
+        Assert.assertEquals(conversationPage.getTheFirstComment(),comment,"Error: the comment doesn't match DP");
+
+        Assert.assertEquals(conversationPage.getCreateYourProfilePlaceholder(),placeHolderName,"Error: the place holder doesn't match DP");
+
+        conversationPage.createYourProfileUserNameInput("automation");
+
+        conversationPage.chooseNameFromSuggestionsList(nameSuggest);
+        Assert.assertTrue(conversationPage.getSuggestNameFromInput().contains(nameSuggest),"Error: suggest name from input doesn't contain the name from DP");
+
+        conversationPage.clickOnNextButton();
+
+        Assert.assertEquals(conversationPage.getCreateYourProfileEmailPlaceholder(),placeHolderEmail,"Error: the place holder doesn't match DP");
+
+        conversationPage.createYourProfileUserEmailInput(email);
+    }
 }
