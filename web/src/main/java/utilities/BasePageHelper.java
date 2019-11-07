@@ -5,7 +5,7 @@ import java.util.Random;
 public class BasePageHelper extends BasePage {
 
     public static String chooseBrowser(String browser) {
-        if (browser.equals("firefox") || browser.equals("IE") || browser.equals("Chrome") || browser.equals("safari") || browser.equals("Edge")) {
+        if (browser.equals("firefox") || browser.equals("IE") || browser.equals("Chrome") || browser.equals("safari") || browser.equals("iPad") || browser.equals("Edge")) {
             return browser;
         } else if (browser.equals("randomize")) {
             String[] arr = {"firefox", "Chrome", "Edge"};
@@ -19,7 +19,7 @@ public class BasePageHelper extends BasePage {
     }
 
     public static String chooseBrand(String brand) {
-        if (brand.equals("conversation") || brand.equals("conversationNoRobot") || brand.equals("moderation") || brand.equals("liveBlog") || brand.equals("starReviews") ||
+        if (brand.equals("conversation") || brand.equals("conversationFoxNewsProduction") || brand.equals("moderation") || brand.equals("liveBlog") || brand.equals("starReviews") ||
                 brand.equals("recirculation") || brand.equals("spotlightComment") || brand.equals("spotlightEmail") || brand.equals("messageCountWidget")) {
             return brand;
         }

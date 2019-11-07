@@ -1,19 +1,34 @@
 package pageObject.conversation;
 
+import extenstions.Click;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.SkipException;
+import utilities.ElementWait;
 import utilities.Log;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ConversationPage {
+
+    protected final static By REPLY_BUTTON = By.cssSelector("span[data-spot-im-class='message-reply']");
+
+    @FindBy(css = "div[data-spot-im-class='conversation-header']")
+    @CacheLookup
+    WebElement spotImHeaderCss;
+
+    @FindBy(id = "trc_header_64636")
+    @CacheLookup
+    WebElement foxNewsSponsored;
 
     @FindBy(xpath = "//*[@class=\"spcv_sort-by\"]/span")
     @CacheLookup
@@ -39,11 +54,11 @@ public class ConversationPage {
     @CacheLookup
     WebElement sortByList;
 
-    @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[1]/div[1]/input")
+    @FindBy(xpath = "//*[@data-spot-im-class=\"rich-editor-input\"]/div/input")
     @CacheLookup
     WebElement nickName;
 
-    @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]")
+    @FindBy(xpath = "//*[@data-spot-im-class=\"rich-editor-wrapper\"]/div[2]/div/div[2]/div[1]/div[1]/p")
     @CacheLookup
     WebElement addCommentGuest;
 
@@ -55,7 +70,7 @@ public class ConversationPage {
     @CacheLookup
     WebElement addCommentUser;
 
-    @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[2]/div/span/div[2]/button")
+    @FindBy(xpath = "//*[@data-spot-im-class=\"rich-editor-panel\"]/div/span/div[2]/button")
     @CacheLookup
     WebElement gifButton;
 
@@ -67,7 +82,7 @@ public class ConversationPage {
     @CacheLookup
     WebElement photoUpload;
 
-    @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[1]/div[2]/div[3]/div[1]/a")
+    @FindBy(xpath = "//*[@class=\"spcv_entity\"]/a")
     @CacheLookup
     WebElement picUpload;
 
@@ -75,7 +90,7 @@ public class ConversationPage {
     @CacheLookup
     WebElement postButton;
 
-    @FindBy(xpath = "//*[@class='spcv_button-text']")
+    @FindBy(xpath = "//*[@class=\"spcv_entity-area\"]/div[2]/span")
     @CacheLookup
     WebElement removePicButton;
 
@@ -159,6 +174,10 @@ public class ConversationPage {
     @CacheLookup
     WebElement createProfileEmailInput;
 
+    @FindBy(xpath = "//*[@id=\"spcv_conversation\"]/div/div[2]/ul/li[2]/div[2]/article/div/div/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]")
+    @CacheLookup
+    WebElement replyToPlaceholder;
+
     WebDriver driver;
 
     public ConversationPage(WebDriver driver) {
@@ -174,6 +193,13 @@ public class ConversationPage {
             Log.info("Error clicking on login Home page button");
         }
     }
+    public void goDownFoxNews() {
+        Actions actions = new Actions(driver);
+        Log.info("going down");
+        actions.moveToElement(foxNewsSponsored);
+        actions.perform();
+    }
+
 
     public void clickOnHandlerAfterLogin() {
         Log.info("Clicking on handler After Login button");
@@ -363,6 +389,27 @@ public class ConversationPage {
         }
     }
 
+    public void enterReply(String option) {
+        String placeHolder=null;
+        Log.info("Getting reply comment placeholder");
+        try {
+            List<WebElement> options = driver.findElements(By.xpath("//*[@data-spot-im-class=\"rich-editor-input\"]/div/div[1]/div[1]"));
+            for (int x = 0; x < options.size(); x++) {
+                placeHolder=  options.get(x).getAttribute("data-placeholder");
+                if (placeHolder.contains(option)){
+                    Log.info("Yes this is reply - The place holder is: "+placeHolder);
+                    options.get(x).click();
+                    options.get(x).sendKeys("Hello you!");
+                    break;
+                }else if (placeHolder.contains("Add a comment")){
+                    Log.info("This is a regular comment - try again ..");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error choosing user option");
+        }
+    }
+
     public String getUserNameAfterLogin() {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.withTimeout(10, TimeUnit.SECONDS);
@@ -498,7 +545,7 @@ public class ConversationPage {
     public void clickOnOneOfTheGifs() {
         Log.info("Clicking on one of the GIF's");
         try {
-            List<WebElement> gifs = driver.findElements(By.xpath("//*[@id=\"spcv_conversation\"]/div/div[2]/div[2]/div[2]/div[2]/div/span/div[2]/div/div/div/div/div"));
+            List<WebElement> gifs = driver.findElements(By.xpath("//*[@data-spot-im-class=\"rich-editor-panel\"]/div/span/div[2]/div/div/div/div/div/div"));
             for (int x = 0; x < gifs.size(); x++) {
                 gifs.get(x).click();
                 break;
@@ -512,16 +559,53 @@ public class ConversationPage {
         String firstComment = null;
         Log.info("Getting the first comment");
         try {
-            List<WebElement> comments = driver.findElements(By.xpath("//*[@data-spot-im-class=\"message-view\"]/div/div/div/div[2]/div[1]"));
-            for (int x = 0; x < comments.size(); x++) {
-                firstComment=comments.get(x).getText();
+            List<WebElement> newComments = driver.findElement(By.cssSelector("div[data-message-depth='0']")).findElements(By.cssSelector("div[data-spot-im-class=\"message-text\"]"));
+            for (int x = 0; x < newComments.size(); x++) {
+                firstComment=newComments.get(x).getText();
                 Log.info("The first comment is "+firstComment);
-                comments.get(x).click();
                 break;
             }
         } catch (Exception e) {
             Log.info("Error Getting the first comment");
         }return firstComment;
+    }
+
+    public String getTheReplayComment(String reply) {
+        String replayComment = null;
+        Log.info("Getting the replay comment");
+        try {
+//            List<WebElement> comments = driver.findElements(By.xpath("//*[@class='spcv_message-view spcv_depth-1 spcv_conversation-message']/div/div/div[2]/div[2]"));
+            List<WebElement> newComments= driver.findElements(By.cssSelector("div[data-message-depth='1']"));
+            for (int x = 0; x < newComments.size(); x++) {
+                replayComment=newComments.get(x).getText();
+                Log.info("All the reply comments are "+replayComment);
+                if (replayComment.equals(reply)){
+                    Log.info("your reply appearing in the conversation "+replayComment);
+                    break;
+                }else {
+                    Log.info("Trying again !");
+                    x++;
+                }
+            }
+        } catch (Exception e) {
+            Log.info("Error Getting the replay comment");
+        }return replayComment;
+    }
+
+    public void clickTheFirstCommentReply() throws InterruptedException {
+        Thread.sleep(2000);
+        Log.info("Clicking the first comment reply button");
+        try {
+            List<WebElement> replyList = driver.findElements(REPLY_BUTTON);
+            replyList.get(0).click();
+            for (int x = 0; x < replyList.size(); x++) {
+                Log.info("There are  "+replyList.size()+" reply buttons");
+                replyList.get(x).click();
+                break;
+            }
+        } catch (Exception e) {
+            Log.info("Error Clicking the first comment reply button");
+        }
     }
 
     public String getTheCommentsTimeStamp(String sortName) {
@@ -568,6 +652,8 @@ public class ConversationPage {
         }
     }
 
+
+
     public String getHeaderAfterHandler() {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOf(headerFromProfileForm));
@@ -580,6 +666,16 @@ public class ConversationPage {
             Log.info("Error getting header after handler option");
         }
         return fullHeader;
+    }
+
+    public void getWaitForVisibility() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        try {
+        wait.until(ExpectedConditions.visibilityOf(spotImHeaderCss));
+            Log.info("finished waiting");
+        }catch (SkipException e){
+            throw new SkipException("skipping...");
+        }
     }
 
     public void chooseNameFromSuggestionsList(String suggest) {
@@ -624,6 +720,45 @@ public class ConversationPage {
             Log.info("Error getting Create your profile email placeholder");
         }
         return emailPlaceholder;
+    }
+
+    public String gettingReplyCommentPlaceholder(String option,String reply) {
+        String placeHolder=null;
+        Log.info("Getting reply comment placeholder");
+        try {
+            List<WebElement> options = driver.findElements(By.xpath("//*[@data-spot-im-class=\"rich-editor-input\"]/div/div[1]/div[1]"));
+            for (int x = 0; x < options.size(); x++) {
+               placeHolder=  options.get(x).getAttribute("data-placeholder");
+               if (placeHolder.contains(option)){
+                   Log.info("Yes this is reply - The place holder is: "+placeHolder);
+                   options.get(x).sendKeys(reply);
+                   break;
+               }else if (placeHolder.contains("Add a comment")){
+                   Log.info("This is a regular comment - try again ..");
+               }
+            }
+        } catch (Exception e) {
+            System.out.println("Error choosing user option");
+        }
+        return placeHolder;
+    }
+
+    public void clickOnPostReply() {
+        List<WebElement> buttons = driver.findElements(By.xpath("//*[@data-spot-im-class=\"rich-editor-send-button\"]"));
+        Log.info("number of buttons " + buttons.size());
+        try {
+            for (int i = 0; i < buttons.size(); i++) {
+                if (!buttons.get(i).isEnabled()) {
+                    Log.info("This is a disabled post button - try again ..");
+                } else {
+                    Log.info("This is enable post button - clicking");
+                    buttons.get(i).click();
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            Log.info("Error : clicking on post button");
+        }
     }
 
 }

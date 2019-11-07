@@ -96,6 +96,15 @@ public class BasePage {
                 caps.setCapability("browserstack.local", "false");
                 caps.setCapability("browserstack.selenium_version", "3.5.2");
 
+        }else if (browser.equals("iPad")) {
+
+                caps.setCapability("Name", testName);
+                caps.setCapability("os_version", "9");
+                caps.setCapability("device", "iPad Air 2");
+                caps.setCapability("real_mobile", "false");
+                caps.setCapability("browserstack.local", "false");
+
+
             }
 
 

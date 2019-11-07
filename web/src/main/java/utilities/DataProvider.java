@@ -62,8 +62,19 @@ public class DataProvider extends BasePage {
     @org.testng.annotations.DataProvider(name = "commentAsUser")
     public Object[][] commentAsUser() throws Exception {
         return new Object[][]{
-                {"User", "automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", " Hello World !!!"},
-                {"User", "automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", " Hello Spot IM "},
+                {"User", "automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", "Hello World !!!"},
+                {"User", "automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", "Hello Spot IM"},
+        };
+    }
+
+    @org.testng.annotations.DataProvider(name = "replyCommentAsUser")
+    public Object[][] replyCommentAsUser() throws Exception {
+        return new Object[][]{
+//                {"User", "automation_yu9@spot.im", "Abc123456789!", "Automation_J4N", "Hello World !!!","Reply to","I'm replying to you!!!"},
+                {"User", "automation_tsK@spot.im", "Abc123456789!", "Automation_Rkl", "Hello World !!!","Reply to","I'm replying to you!!!"},
+//                {"User", "automation_PGB@spot.im", "Abc123456789!", "Automation_pQT", "Hello Spot IM","Reply to"},
+//                {"User", "automation_tsK@spot.im", "Abc123456789!", "Automation_tsK", "Hello Spot IM","Reply to"},
+
         };
     }
 
