@@ -1,9 +1,5 @@
 package utilities;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,11 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
 
 import static java.lang.Math.*;
 import static java.lang.Math.pow;
@@ -74,32 +67,6 @@ public class General {
         return r.nextInt((max - min) + 1) + min;
     }
 
-    public static List<String> errorList = new ArrayList<String>();
-    static ExecutorService executor;
-    static String pageUrlTocheck;
-    static String urlToCheck;
-    static int code;
-
-    private static void sendGet(WebElement element) throws Exception {
-        urlToCheck = element.getAttribute("href");
-        HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(urlToCheck);
-
-        if (!urlToCheck.contains("mailto:")) {
-
-            HttpResponse response = null;
-            try {
-                response = client.execute(request);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            code = response.getStatusLine().getStatusCode();
-
-            if (code != 200)
-                throw new Exception("Checking URL (" + urlToCheck + ") on page: " + pageUrlTocheck + " Failed. Url failed to response with 200 OK. Found: " + code);
-        }
-        System.out.println("href = " + urlToCheck + " - 200 OK");
-    }
 
     public void changeTab(int whatWindowYouNeed) throws Exception {
         Log.info("Changing to tab " + whatWindowYouNeed);

@@ -3,6 +3,8 @@ package utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
@@ -14,10 +16,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.net.URL;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.testng.Assert.fail;
 import static utilities.BasePageHelper.chooseBrowser;
+import static utilities.BasePageHelper.setDimensions;
 
 
 public class BasePage {
@@ -32,6 +38,8 @@ public class BasePage {
     public static String GridToRunTests = System.getProperty("GridToRunTests");
     public static final String BS_URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     public static String testName;
+    public static String screenSize = System.getProperty("screenSize");
+
 
 
     public WebDriver driver = null;
@@ -96,7 +104,7 @@ public class BasePage {
                 caps.setCapability("browserstack.local", "false");
                 caps.setCapability("browserstack.selenium_version", "3.5.2");
 
-        }else if (browser.equals("iPad")) {
+            } else if (browser.equals("iPad")) {
 
                 caps.setCapability("Name", testName);
                 caps.setCapability("os_version", "9");
@@ -156,14 +164,29 @@ public class BasePage {
                 Log.info("Open in SAFARI");
                 driver = new SafariDriver();
             }
-            driver.manage().window().maximize();
+
+            setDimensions(driver, Integer.parseInt(screenSize));
             driver.manage().timeouts().implicitlyWait(20, SECONDS);
+
+
         }
     }
 
 
     @AfterMethod
     public void tearDown() {
+
+        System.out.println("================== CONSOLE LOGS =======================");
+        LogEntries logEntries = driver.manage().logs().get(LogType.BROWSER);
+        List<LogEntry> errorLogs = logEntries.filter(Level.SEVERE);
+            if (errorLogs.size() != 0) {
+                for (LogEntry logEntry: logEntries) {
+                    System.out.println("Found error in logs: " + logEntry.getMessage() );
+//                    System.out.println(new Date(logEntry.getTimestamp()) + " " + logEntry.getLevel() + " " + logEntry.getMessage() + " " + logEntry.toString());
+                }
+            }
+        System.out.println("================== CONSOLE LOGS =======================");
+
         Log.info("tearDown");
         driver.quit();
     }

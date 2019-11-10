@@ -1,6 +1,5 @@
 package spotTests;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.jayway.restassured.path.json.JsonPath;
 
 import org.openqa.selenium.By;
@@ -22,7 +21,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static com.jayway.restassured.RestAssured.given;
-
 
 public class conversation extends BasePage {
 
@@ -373,8 +371,7 @@ public class conversation extends BasePage {
             Log.info("Finished Scrolling down - ipad");
             Thread.sleep(3000);
         } else if (browser.equals("Chrome")) {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0,3150)");
+            general.scrollPage("3150");
             Log.info("Finished Scrolling down - chrome");
 
             elementWait.waitForElementToAppear_xpth("//*[@data-spot-im-class='conversation-header']", 20);

@@ -36,6 +36,7 @@
                             <browser>${browser}</browser>
                             <GridToRunTests>${GridToRunTests}</GridToRunTests>
                             <brand>${brand}</brand>
+                            <screenSize>${screenSize}</screenSize>
                         </systemPropertyVariables>
                     </configuration>
 
@@ -68,10 +69,10 @@
     <properties>
 
         <!--!!!!!   myMachine  WEB !!!-->
-        <GridToRunTests>browserStacks</GridToRunTests> <!--!!!!! myMachine  / browserStacks !!!!!-->
+        <GridToRunTests>myMachine</GridToRunTests> <!--!!!!! myMachine  / browserStacks !!!!!-->
         <browser>Chrome</browser>  <!--!!!!! firefox  / IE / Chrome / safari  / Edge /iPad!!!!!-->
         <brand>conversationFoxNewsProduction</brand> <!--!!!!!conversationFoxNewsProduction / conversation  / moderation / liveBlog / starReviews / recirculation / spotlightComment / spotlightEmail / messageCountWidget !!!!!-->
-
+        <screenSize>0</screenSize><!--!!!!! 0/1/2/3/4/5 !!!!!-->
     </properties>
 
 
